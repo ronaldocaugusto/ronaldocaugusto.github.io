@@ -184,6 +184,12 @@ section{padding-block:clamp(60px,8vw,110px)}
 .pt.on{r:7}
 .funders{margin-top:40px;padding-top:24px;border-top:1px solid var(--night-line);display:grid;gap:10px}
 .funders p{color:var(--night-muted);font-size:.95rem}
+.logos{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.logos li{height:76px;border-radius:8px;background:#fff;display:grid;place-items:center;padding:12px 14px}
+.logos li.dk{background:#1d2a5c}
+.logos li.bk{background:#1E1E1C}
+.logos img{max-width:100%;max-height:52px;object-fit:contain}
+.logos li.txt{background:var(--night-2);border:1px dashed var(--night-line);color:var(--night-ink);font-family:var(--f-display);font-weight:700;font-stretch:108%;font-size:.95rem;text-align:center;line-height:1.15}
 
 /* outreach & service */
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
@@ -276,11 +282,11 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <article class="story">
       <div>
         <p class="q">Environment and virulence</p>
-        <h3>Can polluted water change a parasite?</h3>
+        <h3>Can environmental cues change a parasite?</h3>
         <div class="body">
-          <p>Free-living larvae spend hours in water that may contain pesticides, plastic additives or pharmaceuticals. We expose them to contaminants at the concentrations measured in European rivers and follow the consequences through the whole life cycle.</p>
-          <p>We now ask whether a brief exposure of free-living larvae to bisphenols or PFOA leaves lasting marks on parasite fitness and transmission, including in the next generation. Earlier, we showed that a plant-derived molluscicide also damages the worms that develop from exposed cercariae.</p>
-          <div class="tags"><span class="tag">bisphenols</span><span class="tag">PFOA</span><span class="tag">microplastics</span><span class="tag">transgenerational effects</span></div>
+          <p>A schistosome reads its environment at every step. Free-living larvae swim through water whose temperature, chemistry and contaminants vary from site to site; inside its hosts, the parasite meets diet, immunity and other pathogens. We ask how these cues reprogram its development, virulence and transmission.</p>
+          <p>We expose larvae to realistic stressors, from warming to pesticides, bisphenols and PFAS, and follow the consequences through the whole life cycle, including in the next generation. Earlier, we showed that a plant-derived molluscicide damages the adult worms that develop from exposed cercariae.</p>
+          <div class="tags"><span class="tag">temperature</span><span class="tag">contaminants</span><span class="tag">developmental plasticity</span><span class="tag">transgenerational effects</span></div>
           <p class="refs">Key papers: <a href="https://doi.org/10.3389/fenvs.2024.1410821">Costa et al. 2024</a> · <a href="https://doi.org/10.1371/journal.pntd.0005789">Augusto et al. 2017</a> · <a href="https://doi.org/10.1186/s13071-020-04367-w">Augusto et al. 2020</a></p>
         </div>
       </div>
@@ -302,8 +308,8 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         </div>
       </div>
       <figure class="fig">
-        <div class="frame"><img src="img/chromatin.jpg" width="1100" height="1343" loading="lazy" alt="Heatmaps and profiles of the histone marks H3K4me3 and H3K27me3 around genes in miracidia, sporocysts, cercariae, schistosomula and adults."></div>
-        <figcaption>Genome-wide signatures of the histone marks H3K4me3 and H3K27me3 change from stage to stage across the life cycle.<span class="cr">Roquis et al. 2018, PLOS Pathogens · CC BY 4.0</span></figcaption>
+        <div class="frame" style="background:#fff"><img src="img/histone-marks.jpg" width="1280" height="1215" loading="lazy" alt="Diagram of RNA polymerase II transcription with the histone marks found at each step (pre-initiation, promoter release, elongation) in testes of mature and immature male worms: H3K27me3, H3K9me3, H3K4me3, H3K23ac, H3K36me3 and H4K12ac."></div>
+        <figcaption>Histone marks along the transcription cycle differ between immature and mature testes of <em>S. mansoni</em>.<span class="cr">Augusto lab · created with BioRender</span></figcaption>
       </figure>
     </article>
 
@@ -445,7 +451,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="legend" id="legend"></div>
     <div class="funders">
       <p class="eyebrow">Funding since 2022</p>
-      <p>CAPES–COFECUB · ANR · CNPq · CAPES-PrInt · FAPESP · Fiocruz · France–Brazil Embassy · Région Occitanie · ExposUM · RIVOC · CEMEB · TULIP · UPVD</p>
+      <ul class="logos" id="logos" aria-label="Funders"></ul>
     </div>
   </div>
 </section>
@@ -473,9 +479,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
           <li>Associate Editor<small>PLOS Neglected Tropical Diseases</small></li>
           <li>Scientific committee<small>International Symposium on Schistosomiasis, Rio de Janeiro, 2026</small></li>
           <li>Steering committee member<small>RIVOC+, infectious and vector risks in Occitanie</small></li>
-          <li>Co-lead, “GT Mollusques” working group<small>with Richard Galinier</small></li>
           <li>Thesis juries and committees<small>Fiocruz (IOC, ENSP, IRR) and UPVD, since 2022</small></li>
-          <li>Fiocruz Ambassador network in France</li>
         </ul>
       </div>
       <div>
@@ -531,40 +535,40 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const ital=s=>esc(s).replace(SPECIES,'<em class="sp">$1</em>');
 
 const PUBS=[
- {y:2026,t:"article",ti:"Integrated SEM, TEM and CLSM workflow for tegumental analysis of adult Schistosoma mansoni",au:"**de Carvalho Augusto R**, Ferreira João RC, Barbosa HS, Mello-Silva CC, Santos CP",v:"Micron",vol:"208:104119",doi:"10.1016/j.micron.2026.104119"},
+ {y:2026,t:"article",ti:"Over-dispersion in malaria–schistosoma co-infection: insights from a meta-analytical approach and systematic review",au:"Koellsch-Amet C, Boissier J, **Augusto RC**",v:"Infectious Diseases of Poverty",vol:"15(1):107",doi:"10.1186/s40249-026-01490-1"},
+ {y:2026,t:"article",ti:"Integrated SEM, TEM and CLSM workflow for tegumental analysis of adult Schistosoma mansoni",au:"**de Carvalho Augusto R**, João RCF, Barbosa HS, Mello-Silva CC, Santos CP",v:"Micron",vol:"208:104119",doi:"10.1016/j.micron.2026.104119"},
  {y:2026,t:"preprint",ti:"The histone code of love: epigenetics of maturation of gonads in the human blood fluke Schistosoma mansoni",au:"Grunau C, Lu Z, Coghlan A, Moescheid M, Quack T, Chaparro C, Aunin E, Allienne J-F, Reid A, Holroyd N, Berriman M, Padalino G, Hoffmann KF, Grevelding CG, **de Carvalho Augusto R**",v:"Preprint · submitted",doi:"10.64898/2026.01.23.701327"},
- {y:2025,t:"article",ti:"Chromatin structure around long non-coding RNA (lncRNA) genes in Schistosoma mansoni gonads",au:"**de Carvalho Augusto R**, Quack T, Grevelding CG, Grunau C",v:"Non-Coding RNA",vol:"11(2):25",doi:"10.3390/ncrna11020025"},
- {y:2026,t:"article",ti:"Over-dispersion in malaria–Schistosoma co-infection: insights from a meta-analytical approach and systematic review",au:"Koellsch-Amet C, Boissier J, **de Carvalho Augusto R**",v:"Infectious Diseases of Poverty",vol:"15(1):107",doi:"10.1186/s40249-026-01490-1"},
- {y:2024,t:"article",ti:"Contaminated freshwater as a harbinger of tropical disease spread in Europe",au:"Costa A, Guerrero H, Sureau A, Tassaint M, **de Carvalho Augusto R**",v:"Frontiers in Environmental Science",vol:"12:1410821",doi:"10.3389/fenvs.2024.1410821"},
+ {y:2025,t:"article",ti:"Chromatin Structure Around Long Non-Coding RNA (lncRNA) Genes in Schistosoma mansoni Gonads",au:"**Augusto RC**, Quack T, Grevelding CG, Grunau C",v:"Non-Coding RNA",vol:"11(2):25",doi:"10.3390/ncrna11020025"},
+ {y:2025,t:"preprint",ti:"The Schistosoma Mansoni Male Tegument: An Ultrastructural Framework for Tubercles Morphogenesis",au:"**de Carvalho Augusto R**, Ferreira João R, Santos Barbosa H, Mello-Silva C, Portes C",v:"SSRN preprint",doi:"10.2139/ssrn.5369633"},
+ {y:2024,t:"article",ti:"Contaminated freshwater as a Harbinger of tropical disease spread in Europe",au:"Costa A, Guerrero H, Sureau A, Tassaint M, **Augusto RC**",v:"Frontiers in Environmental Science",vol:"12:1410821",doi:"10.3389/fenvs.2024.1410821"},
  {y:2024,t:"article",ti:"Automated ChIPmentation procedure on limited biological material of the human blood fluke Schistosoma mansoni",au:"Lasica C, **de Carvalho Augusto R**, Moné H, Mouahid G, Chaparro C, Veillard A-C, Zelisko-Schmidt A, Grunau C",v:"Wellcome Open Research",vol:"7:133",doi:"10.12688/wellcomeopenres.17779.2"},
- {y:2023,t:"article",ti:"Fluorescent non transgenic schistosoma to decipher host-parasite phenotype compatibility",au:"Duval D, Poteaux P, Gourbal B, Rognon A, **de Carvalho Augusto R**",v:"Frontiers in Immunology",vol:"14:1293009",doi:"10.3389/fimmu.2023.1293009"},
+ {y:2023,t:"article",ti:"Fluorescent non transgenic schistosoma to decipher host-parasite phenotype compatibility",au:"Duval D, Poteaux P, Gourbal B, Rognon A, **Augusto RC**",v:"Frontiers in Immunology",vol:"14:1293009",doi:"10.3389/fimmu.2023.1293009"},
  {y:2021,t:"article",ti:"Morphological and genomic characterisation of the Schistosoma hybrid infecting humans in Europe reveals admixture between Schistosoma haematobium and Schistosoma bovis",au:"Kincaid-Smith J, Tracey A, **de Carvalho Augusto R**, Bulla I, Holroyd N, Rognon A, Rey O, Chaparro C, Oleaga A, Mas-Coma S, Allienne J-F, Grunau C, Berriman M, Boissier J, Toulza E",v:"PLOS Neglected Tropical Diseases",vol:"15(12):e0010062",doi:"10.1371/journal.pntd.0010062"},
- {y:2021,t:"article",ti:"Rhesus macaques self-curing from a schistosome infection can display complete immunity to challenge",au:"Amaral MS, Santos DW, Pereira ASA, Tahira AC, … **de Carvalho Augusto R**, Grunau C, Wilson RA, Verjovski-Almeida S",v:"Nature Communications",vol:"12:6181",doi:"10.1038/s41467-021-26497-0"},
- {y:2021,t:"article",ti:"A simple ATAC-seq protocol for population epigenetics",au:"**de Carvalho Augusto R**, Rey O, Cosseau C, Chaparro C, Vidal-Dupiol J, Allienne J-F, Duval D, Pinaud S, … Minoda A, Grunau C",v:"Wellcome Open Research",vol:"5:121, version 2",doi:"10.12688/wellcomeopenres.15552.2"},
- {y:2021,t:"article",ti:"Chromatin landscape dynamics in the early development of the plant parasitic nematode Meloidogyne incognita",au:"Hassanaly-Goulamhoussen R, **de Carvalho Augusto R**, Marteu-Garello N, … Grunau C, Perfus-Barbeoch L",v:"Frontiers in Cell and Developmental Biology",src:"rg"},
- {y:2021,t:"article",ti:"Essential oils from two Apiaceae species as potential agents in organic crops protection",au:"Merad N, Andreu V, Chaib S, **de Carvalho Augusto R**, Duval D, Bertrand C, Boumghar Y, Pichette A, Djabou N",v:"Antibiotics",vol:"10(6):636",doi:"10.3390/antibiotics10060636"},
- {y:2021,t:"article",ti:"Evaluation of original Roundup® effects on Biomphalaria glabrata",au:"Faro MJ, Moura VS, **de Carvalho Augusto R**, Vasconcellos MC",v:"Biotemas",src:"rg"},
- {y:2020,t:"article",ti:"Molluscicidal and parasiticidal activities of Eryngium triquetrum essential oil on Schistosoma mansoni and its intermediate snail host Biomphalaria glabrata, a double impact",au:"**de Carvalho Augusto R**, Merad N, Rognon A, Gourbal B, Bertrand C, Djabou N, Duval D",v:"Parasites & Vectors",vol:"13:486",doi:"10.1186/s13071-020-04367-w"},
- {y:2020,t:"chapter",ti:"Measuring histone modifications in the human parasite Schistosoma mansoni",au:"**de Carvalho Augusto R**, Roquis D, Picard MAL, Chaparro C, Cosseau C, Grunau C",v:"In: Schistosoma mansoni. Methods and Protocols. Methods in Molecular Biology 2151",vol:"pp. 93–107",doi:"10.1007/978-1-0716-0635-3_9"},
- {y:2019,t:"article",ti:"Effects of the environment on developmental plasticity and infection success of Schistosoma parasites – an epigenetic perspective",au:"**de Carvalho Augusto R**, Duval D, Grunau C",v:"Frontiers in Microbiology",vol:"10:1475",doi:"10.3389/fmicb.2019.01475",src:"ihpe"},
- {y:2019,t:"article",ti:"Dosage compensation throughout the Schistosoma mansoni lifecycle: specific chromatin landscape of the Z chromosome",au:"Picard MAL, Vicoso B, Roquis D, Bulla I, **Augusto RC**, Arancibia N, Grunau C, Boissier J, Cosseau C",v:"Genome Biology and Evolution",vol:"11(7):1909–1922",doi:"10.1093/gbe/evz133"},
- {y:2019,t:"article",ti:"Physiology and immunity of the invasive giant African snail, Achatina (Lissachatina) fulica",au:"Lima MG, **de Carvalho Augusto R**, Pinheiro J, Thiengo SC",v:"Developmental & Comparative Immunology",src:"rg"},
- {y:2019,t:"article",ti:"Compatibility polymorphism based on long-term host-parasite relationships",au:"Lima M, Montresor LC, Pontes J, Thiengo SC, **de Carvalho Augusto R**, et al.",v:"Frontiers in Immunology",src:"rg"},
- {y:2019,t:"chapter",ti:"Histone methylome of the human parasite Schistosoma mansoni",au:"**de Carvalho Augusto R**, Cosseau C, Grunau C",v:"In: The DNA, RNA, and Histone Methylomes. RNA Technologies, Springer",vol:"pp. 607–624",doi:"10.1007/978-3-030-14792-1_24"},
- {y:2019,t:"preprint",ti:"Chromatin structure changes in Daphnia populations upon exposure to environmental cues – or – The discovery of Woltereck's “Matrix”",au:"**de Carvalho Augusto R**, Minoda A, Rey O, Cosseau C, … Danchin E, Grunau C",v:"bioRxiv",doi:"10.1101/824789"},
- {y:2018,t:"article",ti:"Histone methylation changes are required for life cycle progression in the human parasite Schistosoma mansoni",au:"Roquis D, Taudt A, Geyer KK, Padalino G, Hoffmann KF, Holroyd N, Berriman M, Aliaga B, Chaparro C, Grunau C, **de Carvalho Augusto R**",v:"PLOS Pathogens",vol:"14(5):e1007066",doi:"10.1371/journal.ppat.1007066"},
- {y:2018,t:"article",ti:"Transplantation of schistosome sporocysts between host snails: a video guide",au:"Mouahid G, Rognon A, **de Carvalho Augusto R**, Driguez P, Geyer K, Karinshak S, Luviano N, Mann V, Quack T, Rawlinson K, Wendt G, Grunau C, Moné H",v:"Wellcome Open Research",vol:"3:3",doi:"10.12688/wellcomeopenres.13488.1"},
- {y:2018,t:"article",ti:"Phytochemical molluscicides and schistosomiasis: what we know and what we still need to learn",au:"**de Carvalho Augusto R**, Mello-Silva CCC",v:"Veterinary Sciences",vol:"5(4):94",doi:"10.3390/vetsci5040094"},
- {y:2017,t:"article",ti:"Double impact: natural molluscicide for schistosomiasis vector control also impedes development of Schistosoma mansoni cercariae into adult parasites",au:"**de Carvalho Augusto R**, Tetreau G, Chan P, Walet-Balieu M-L, Mello-Silva CCC, Santos CP, Grunau C",v:"PLOS Neglected Tropical Diseases",vol:"11(7):e0005789",doi:"10.1371/journal.pntd.0005789"},
- {y:2017,t:"article",ti:"Desarrollo, expresión diferencial de proteínas y redes génicas en Schistosoma mansoni expuestos a Euphorbia milii látex en estado de cercaria",au:"**de Carvalho Augusto R**, Barros E, Pereira Vidigal PM, Mantovani C, de Oliveira Ramos HJ, Mello-Silva CC, Mafra C, Santos CP",v:"Neotropical Helminthology",doi:"10.24039/rnh2017111698"},
- {y:2016,t:"article",ti:"La primera sonda de electrones de microanálisis de rayos X de la composición elemental del producto liofilizado de látex de Euphorbia milii var. hislopii y su impacto en el macho de Schistosoma mansoni",au:"**de Carvalho Augusto R**, Mello-Silva CC, Gatti MJ, Mafra CL, Santos CP",v:"Neotropical Helminthology",doi:"10.24039/rnh2016101724"},
- {y:2015,t:"article",ti:"Schistosoma mansoni: phytochemical effect on aquatic life cycle",au:"**de Carvalho Augusto R**, Friani G, de Vasconcellos MC, de Azevedo Rodrigues ML, Mello-Silva CCC",v:"Open Journal of Veterinary Medicine",vol:"5(6):127–132",doi:"10.4236/ojvm.2015.56017",src:"ihpe"},
- {y:2025,t:"preprint",ti:"The Schistosoma mansoni male tegument: an ultrastructural framework for tubercles morphogenesis",au:"**de Carvalho Augusto R**, Ferreira João R, Barbosa HS, Mello-Silva C, Portes C",v:"SSRN preprint",doi:"10.2139/ssrn.5369633"},
- {y:2017,t:"article",ti:"Combined treatment of Biomphalaria glabrata infected by Schistosoma mansoni with oxamniquine and praziquantel: reproductive, histological and metabolic aspects",au:"Lima RN, Coelho PMZ, Mattos ACA, Mello-Silva CC, **de Carvalho Augusto R**, Mota EM, et al.",v:"Experimental Parasitology",vol:"183:6–12"},
- {y:2013,t:"article",ti:"A rapid diagnostic test for schistosomiasis mansoni",au:"Mello-Silva CC, João RC, **de Carvalho Augusto R**, Santos CP",v:"Memórias do Instituto Oswaldo Cruz",vol:"108(8):1078–1080"},
- {y:2012,t:"article",ti:"Metabolic changes in Biomphalaria glabrata infected with Schistosoma mansoni exposed to latex of Euphorbia milii solution versus times of preparation",au:"Lima MG, **Augusto RC**, de Vasconcellos MC, Mello-Silva CC, Pinheiro J",v:"Journal of Natural Products",vol:"5:222–232"},
- {y:2012,t:"article",ti:"The influence of population density and food intake on the reproductive biology of Biomphalaria glabrata and the amount of calcium in snails experimentally infected with Schistosoma mansoni [in Portuguese]",au:"**Augusto RC**, Magalhães ACS, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"41(1)",doi:"10.5216/rpt.v41i1.17798"},
- {y:2011,t:"article",ti:"Biomphalaria glabrata: exposure to different amounts of calcium carbonate influences growth, sexual maturity and pearl formation [in Portuguese]",au:"da Silva Magalhães AC, **de Carvalho Augusto R**, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"40(4):341–347"},
+ {y:2021,t:"article",ti:"Rhesus macaques self-curing from a schistosome infection can display complete immunity to challenge",au:"Amaral MS, Santos DW, Pereira ASA, Tahira AC, Malvezzi JVM, Miyasato PA, Freitas RP, Kalil J, Tjon Kon Fat EM, de Dood CJ, Corstjens PLAM, van Dam GJ, Nakano E, Castro SO, Mattaraia VGM, **Augusto RC**, Grunau C, Wilson RA, Verjovski-Almeida S",v:"Nature Communications",vol:"12(1):6181",doi:"10.1038/s41467-021-26497-0"},
+ {y:2021,t:"article",ti:"A simple ATAC-seq protocol for population epigenetics",au:"**Augusto RC**, Rey O, Cosseau C, Chaparro C, Vidal-Dupiol J, Allienne J-F, Duval D, Pinaud S, Tönges S, Andriantsoa R, Luquet E, Aubret F, Dia Sow M, David P, Thomson V, Joly D, Gomes Lima M, Federico D, Danchin E, Minoda A, Grunau C",v:"Wellcome Open Research",vol:"5:121",doi:"10.12688/wellcomeopenres.15552.2"},
+ {y:2021,t:"article",ti:"Chromatin Landscape Dynamics in the Early Development of the Plant Parasitic Nematode Meloidogyne incognita",au:"Hassanaly-Goulamhoussen R, **de Carvalho Augusto R**, Marteu-Garello N, Péré A, Favery B, Da Rocha M, Danchin EGJ, Abad P, Grunau C, Perfus-Barbeoch L",v:"Frontiers in Cell and Developmental Biology",vol:"9:765690",doi:"10.3389/fcell.2021.765690"},
+ {y:2021,t:"article",ti:"Essential Oils from Two Apiaceae Species as Potential Agents in Organic Crops Protection",au:"Merad N, Andreu V, Chaib S, **de Carvalho Augusto R**, Duval D, Bertrand C, Boumghar Y, Pichette A, Djabou N",v:"Antibiotics",vol:"10(6):636",doi:"10.3390/antibiotics10060636"},
+ {y:2021,t:"article",ti:"Evaluation of original Roundup® effects on Biomphalaria glabrata (Say, 1818)",au:"Faro MJ, Moura VS, **Augusto RC**, Vasconcellos MC",v:"Biotemas",vol:"34(1):1–9",doi:"10.5007/2175-7925.2021.e77320"},
+ {y:2020,t:"article",ti:"Molluscicidal and parasiticidal activities of Eryngium triquetrum essential oil on Schistosoma mansoni and its intermediate snail host Biomphalaria glabrata, a double impact",au:"**de Carvalho Augusto R**, Merad N, Rognon A, Gourbal B, Bertrand C, Djabou N, Duval D",v:"Parasites & Vectors",vol:"13(1):486",doi:"10.1186/s13071-020-04367-w"},
+ {y:2020,t:"chapter",ti:"Measuring Histone Modifications in the Human Parasite Schistosoma mansoni",au:"**de Carvalho Augusto R**, Roquis D, Picard MAL, Chaparro C, Cosseau C, Grunau C",v:"In: Schistosoma mansoni: Methods and Protocols. Methods in Molecular Biology 2151",vol:"pp. 93–107",doi:"10.1007/978-1-0716-0635-3_9"},
+ {y:2020,t:"article",ti:"Physiology and immunity of the invasive giant African snail, Achatina (Lissachatina) fulica, intermediate host of Angiostrongylus cantonensis",au:"Lima MG, **Augusto RC**, Pinheiro J, Thiengo SC",v:"Developmental & Comparative Immunology",vol:"105:103579",doi:"10.1016/j.dci.2019.103579"},
+ {y:2019,t:"article",ti:"Effects of the Environment on Developmental Plasticity and Infection Success of Schistosoma Parasites – An Epigenetic Perspective",au:"**Augusto RC**, Duval D, Grunau C",v:"Frontiers in Microbiology",vol:"10:1475",doi:"10.3389/fmicb.2019.01475"},
+ {y:2019,t:"article",ti:"Dosage Compensation throughout the Schistosoma mansoni Lifecycle: Specific Chromatin Landscape of the Z Chromosome",au:"Picard MAL, Vicoso B, Roquis D, Bulla I, **Augusto RC**, Arancibia N, Grunau C, Boissier J, Cosseau C",v:"Genome Biology and Evolution",vol:"11(7):1909–1922",doi:"10.1093/gbe/evz133"},
+ {y:2019,t:"article",ti:"Compatibility Polymorphism Based on Long-Term Host-Parasite Relationships: Cross Talking Between Biomphalaria glabrata and the Trematode Schistosoma mansoni From Endemic Areas in Brazil",au:"Lima MG, Montresor LC, Pontes J, **Augusto RC**, Silva JP, Thiengo SC",v:"Frontiers in Immunology",vol:"10:328",doi:"10.3389/fimmu.2019.00328"},
+ {y:2019,t:"chapter",ti:"Histone Methylome of the Human Parasite Schistosoma Mansoni",au:"**Augusto RC**, Cosseau C, Grunau C",v:"In: The DNA, RNA, and Histone Methylomes. RNA Technologies, Springer",vol:"pp. 607–624",doi:"10.1007/978-3-030-14792-1_24"},
+ {y:2019,t:"preprint",ti:"Chromatin structure changes in Daphnia populations upon exposure to environmental cues – or – The discovery of Wolterecks “Matrix”",au:"**de Carvalho Augusto R**, Minoda A, Rey O, Cosseau C, Chaparro C, Vidal-Dupiol J, Allienne J-F, Duval D, Pinaud S, Tönges S, Andriantsoa R, Luquet E, Aubret F, Dia Sow M, David P, Thomson V, Federico D, Joly D, Lima MG, Danchin E, Grunau C",v:"bioRxiv",doi:"10.1101/824789"},
+ {y:2018,t:"article",ti:"Histone methylation changes are required for life cycle progression in the human parasite Schistosoma mansoni",au:"Roquis D, Taudt A, Geyer KK, Padalino G, Hoffmann KF, Holroyd N, Berriman M, Aliaga B, Chaparro C, Grunau C, **Augusto RC**",v:"PLOS Pathogens",vol:"14(5):e1007066",doi:"10.1371/journal.ppat.1007066"},
+ {y:2018,t:"article",ti:"Transplantation of schistosome sporocysts between host snails: A video guide",au:"Mouahid G, Rognon A, **de Carvalho Augusto R**, Driguez P, Geyer K, Karinshak S, Luviano N, Mann V, Quack T, Rawlinson K, Wendt G, Grunau C, Moné H",v:"Wellcome Open Research",vol:"3:3",doi:"10.12688/wellcomeopenres.13488.1"},
+ {y:2018,t:"article",ti:"Phytochemical Molluscicides and Schistosomiasis: What We Know and What We Still Need to Learn",au:"**Augusto RC**, De Mello-Silva CCC",v:"Veterinary Sciences",vol:"5(4):94",doi:"10.3390/vetsci5040094"},
+ {y:2017,t:"article",ti:"Double impact: natural molluscicide for schistosomiasis vector control also impedes development of Schistosoma mansoni cercariae into adult parasites",au:"**Augusto RC**, Tetreau G, Chan P, Walet-Balieu M-L, Mello-Silva CC, Santos CP, Grunau C",v:"PLOS Neglected Tropical Diseases",vol:"11(7):e0005789",doi:"10.1371/journal.pntd.0005789"},
+ {y:2017,t:"article",ti:"Combined treatment of Biomphalaria glabrata infected by Schistosoma mansoni with oxamniquine and praziquantel: Reproductive histological and metabolic aspects",au:"Lima RN, Coelho PMZ, Mattos ACA, Mello Silva CC, **Augusto RC**, Mota EM, de Souza S, Atella GC, Cabral SS, Gabriel Kluck GE, Faro MJ",v:"Experimental Parasitology",vol:"183:6–12",doi:"10.1016/j.exppara.2017.10.001"},
+ {y:2017,t:"article",ti:"Desarrollo, expresión diferencial de proteínas y redes génicas en Schistosoma mansoni expuestos a Euphorbia milii latex en estado de cercaria",au:"**de Carvalho Augusto R**, Barros E, Pereira Vidigal PM, Mantovani C, De Oliveira Ramos HJ, Mello-Silva CC, Mafra C, Portes Santos C",v:"Neotropical Helminthology",vol:"11(1):115–128",doi:"10.24039/rnh2017111698"},
+ {y:2016,t:"article",ti:"La primera sonda de electrones de microanálisis de rayos X de la composición elemental del producto liofilizado de latex de Euphorbia milii var. hislopii y su impacto en el macho de Schistosoma mansoni",au:"**de Carvalho Augusto R**, Mello-Silva CC, Gatti MJ, Mafra CL, Portes Santos C",v:"Neotropical Helminthology",vol:"10(1):13–22",doi:"10.24039/rnh2016101724"},
+ {y:2015,t:"article",ti:"Schistosoma mansoni: Phytochemical Effect on Aquatic Life Cycle",au:"**de Carvalho Augusto R**, Friani G, de Vasconcellos MC, de Azevedo Rodrigues ML, Mello-Silva CC",v:"Open Journal of Veterinary Medicine",vol:"5(6):127–132",doi:"10.4236/ojvm.2015.56017"},
+ {y:2013,t:"article",ti:"A rapid diagnostic test for schistosomiasis mansoni",au:"Mello-Silva CC, Joao RC, **Augusto RC**, Santos CP",v:"Memórias do Instituto Oswaldo Cruz",vol:"108(8):1078–1080",doi:"10.1590/0074-0276130335"},
+ {y:2012,t:"article",ti:"A influencia da densidade populacional e a ingestão de alimentos na biologia reprodutiva da Biomphalaria glabrata (mollusca) e da quantidade de cálcio em caramujos experimentalmente infectados com Schistosoma mansoni (trematoda)",au:"**de Carvalho Augusto R**, da Silva Magalhães AC, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"41(1)",doi:"10.5216/rpt.v41i1.17798"},
+ {y:2011,t:"article",ti:"Biomphalaria glabrata: exposição a diferentes concentrações de carbonato de cálcio influenciam o crescimento, a maturidade sexual e a formação de pérolas",au:"da Silva Magalhães AC, **Augusto RC**, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"40(4):341–347",doi:"10.5216/rpt.v40i4.16763"},
+ {y:2012,t:"article",ti:"Metabolic changes in Biomphalaria glabrata infected with Schistosoma mansoni exposed to latex of Euphorbia milii solution versus times of preparation",au:"Lima MG, **Augusto RC**, Vasconcellos MC, Mello-Silva CC, Pinheiro J",v:"Journal of Natural Products",vol:"5:222–232"}
 ];
 
 const BADGE={article:["Article",""],preprint:["Preprint","pre"],chapter:["Chapter","ch"],submitted:["In review","sub"]};
@@ -639,9 +643,9 @@ const PEOPLE=[
  {n:"Sarah Dametto",r:"Postdoctoral researcher",w:"IHPE, UPVD · since April 2026",tp:"ANR project Tropical Diseases of Today, European Diseases of Tomorrow"},
  {n:"Bertrand de L’Isle",r:"PhD candidate",w:"IHPE, UPVD · 2024–2027 · co-supervised with Christoph Grunau",tp:"How freshwater contaminants shape S. mansoni virulence and transmission"},
  {n:"Célia Koellsch-Amet",r:"PhD candidate",w:"IHPE, UPVD · 2024–2027 · co-supervised with Jérôme Boissier",tp:"Plasmodium yoelii and S. mansoni co-infection, from host pathology to molecules"},
- {n:"Isabela Xavier Dutra",r:"PhD co-supervision",w:"Instituto René Rachou, Fiocruz, Brazil · 2022–2026",tp:"MicroRNAs and resistance to Schistosoma in Biomphalaria and Bulinus snails"},
- {n:"Lorena Oliveira Souza Soares",r:"PhD co-supervision",w:"ENSP, Fiocruz, Brazil · 2024–2028",tp:"PFOA and microplastics in aquatic and terrestrial organisms, a One Health biomarker approach"},
- {n:"Augusto Magubeia Francisco",r:"PhD co-supervision",w:"Instituto Nacional de Saúde, Mozambique · 2024–2028",tp:"Epidemiology of schistosomiasis in Murrupula district, Nampula province"}
+ {n:"Isabela Xavier Dutra",r:"PhD co-supervision",w:"Instituto René Rachou, Fiocruz, Brazil · 2022–2026 · co-supervised with Marina Moraes Mourão and Sandra Gava",tp:"MicroRNAs and resistance to Schistosoma in Biomphalaria and Bulinus snails"},
+ {n:"Lorena Oliveira Souza Soares",r:"PhD co-supervision",w:"ENSP, Fiocruz, Brazil · 2024–2028 · co-supervised with Enrico Saggioro and Fábio Veríssimo Correia",tp:"PFOA and microplastics in aquatic and terrestrial organisms, a One Health biomarker approach"},
+ {n:"Augusto Magubeia Francisco",r:"PhD co-supervision",w:"Instituto Nacional de Saúde, Mozambique · 2024–2028 · co-supervised with Clélia Mello-Silva and Sonia Enessa",tp:"Epidemiology of schistosomiasis in Murrupula district, Nampula province"}
 ];
 /* Master's students. Add img:"img/team/<file>.jpg" for a photo and url:"<lab page>" for the current lab profile. */
 const MSC=[
@@ -668,6 +672,13 @@ const CAREER=[
  ["2012","MSc in Veterinary Parasitology, UFRRJ, Brazil"]
 ];
 document.getElementById("career").innerHTML=CAREER.map(([d,t])=>`<li>${esc(t)}<small>${d}</small></li>`).join("");
+
+/* funders: logo files in img/logos/; entries without a file show the name until the official logo is added */
+const FUNDERS=[
+ {n:"CAPES–COFECUB"},{n:"ANR",f:"anr.png"},{n:"CNPq"},{n:"CAPES-PrInt"},{n:"FAPESP",f:"fapesp.png",c:"dk"},{n:"Fiocruz"},
+ {n:"France–Brazil Embassy"},{n:"Région Occitanie",f:"occitanie.png",c:"bk"},{n:"ExposUM"},{n:"RIVOC",f:"rivoc.png"},{n:"CEMEB"},{n:"TULIP"},{n:"UPVD",f:"upvd.png"}
+];
+document.getElementById("logos").innerHTML=FUNDERS.map(x=>x.f?`<li class="${x.c||""}"><img src="img/logos/${x.f}" alt="${esc(x.n)}" loading="lazy"></li>`:`<li class="txt">${esc(x.n)}</li>`).join("");
 
 /* network map: equirectangular, lon -130..60, lat 62..-38, 4 px per degree */
 const P=(lon,lat)=>[(lon+130)*4,(62-lat)*4];
