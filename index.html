@@ -417,7 +417,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="sec-head">
       <p class="eyebrow">Publications</p>
       <h2>Articles, preprints and chapters</h2>
-      <p class="lead">Selected list checked against Crossref. Sync with ORCID to add every record.</p>
+      <p class="lead">Selected list checked against Crossref. The complete record is on ORCID and Google Scholar.</p>
     </div>
     <div class="pub-tools">
       <div class="seg" role="group" aria-label="Filter by type">
@@ -427,7 +427,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <button type="button" data-f="chapter" aria-pressed="false">Chapters</button>
       </div>
       <input id="q" class="search" type="search" placeholder="Search title, journal or author" aria-label="Search publications">
-      <button type="button" id="sync" class="btn sync">Sync with ORCID</button>
+      <a id="sync" class="btn sync" href="https://orcid.org/0000-0003-1147-0043">Full list on ORCID</a>
     </div>
     <p class="pub-status" id="pstat" aria-live="polite"></p>
     <div id="pubs" class="pubs"></div>
@@ -534,7 +534,7 @@ const PUBS=[
  {y:2026,t:"article",ti:"Integrated SEM, TEM and CLSM workflow for tegumental analysis of adult Schistosoma mansoni",au:"**de Carvalho Augusto R**, Ferreira João RC, Barbosa HS, Mello-Silva CC, Santos CP",v:"Micron",vol:"208:104119",doi:"10.1016/j.micron.2026.104119"},
  {y:2026,t:"preprint",ti:"The histone code of love: epigenetics of maturation of gonads in the human blood fluke Schistosoma mansoni",au:"Grunau C, Lu Z, Coghlan A, Moescheid M, Quack T, Chaparro C, Aunin E, Allienne J-F, Reid A, Holroyd N, Berriman M, Padalino G, Hoffmann KF, Grevelding CG, **de Carvalho Augusto R**",v:"Preprint · submitted",doi:"10.64898/2026.01.23.701327"},
  {y:2025,t:"article",ti:"Chromatin structure around long non-coding RNA (lncRNA) genes in Schistosoma mansoni gonads",au:"**de Carvalho Augusto R**, Quack T, Grevelding CG, Grunau C",v:"Non-Coding RNA",vol:"11(2):25",doi:"10.3390/ncrna11020025"},
- {y:2026,t:"article",ti:"Over-dispersion in malaria–Schistosoma co-infection: insights from a meta-analytical approach and systematic review",au:"Koellsch-Amet C, Boissier J, **de Carvalho Augusto R**",v:"Infectious Diseases of Poverty",vol:"15(1):107"},
+ {y:2026,t:"article",ti:"Over-dispersion in malaria–Schistosoma co-infection: insights from a meta-analytical approach and systematic review",au:"Koellsch-Amet C, Boissier J, **de Carvalho Augusto R**",v:"Infectious Diseases of Poverty",vol:"15(1):107",doi:"10.1186/s40249-026-01490-1"},
  {y:2024,t:"article",ti:"Contaminated freshwater as a harbinger of tropical disease spread in Europe",au:"Costa A, Guerrero H, Sureau A, Tassaint M, **de Carvalho Augusto R**",v:"Frontiers in Environmental Science",vol:"12:1410821",doi:"10.3389/fenvs.2024.1410821"},
  {y:2024,t:"article",ti:"Automated ChIPmentation procedure on limited biological material of the human blood fluke Schistosoma mansoni",au:"Lasica C, **de Carvalho Augusto R**, Moné H, Mouahid G, Chaparro C, Veillard A-C, Zelisko-Schmidt A, Grunau C",v:"Wellcome Open Research",vol:"7:133",doi:"10.12688/wellcomeopenres.17779.2"},
  {y:2023,t:"article",ti:"Fluorescent non transgenic schistosoma to decipher host-parasite phenotype compatibility",au:"Duval D, Poteaux P, Gourbal B, Rognon A, **de Carvalho Augusto R**",v:"Frontiers in Immunology",vol:"14:1293009",doi:"10.3389/fimmu.2023.1293009"},
@@ -563,6 +563,7 @@ const PUBS=[
  {y:2017,t:"article",ti:"Combined treatment of Biomphalaria glabrata infected by Schistosoma mansoni with oxamniquine and praziquantel: reproductive, histological and metabolic aspects",au:"Lima RN, Coelho PMZ, Mattos ACA, Mello-Silva CC, **de Carvalho Augusto R**, Mota EM, et al.",v:"Experimental Parasitology",vol:"183:6–12"},
  {y:2013,t:"article",ti:"A rapid diagnostic test for schistosomiasis mansoni",au:"Mello-Silva CC, João RC, **de Carvalho Augusto R**, Santos CP",v:"Memórias do Instituto Oswaldo Cruz",vol:"108(8):1078–1080"},
  {y:2012,t:"article",ti:"Metabolic changes in Biomphalaria glabrata infected with Schistosoma mansoni exposed to latex of Euphorbia milii solution versus times of preparation",au:"Lima MG, **Augusto RC**, de Vasconcellos MC, Mello-Silva CC, Pinheiro J",v:"Journal of Natural Products",vol:"5:222–232"},
+ {y:2012,t:"article",ti:"The influence of population density and food intake on the reproductive biology of Biomphalaria glabrata and the amount of calcium in snails experimentally infected with Schistosoma mansoni [in Portuguese]",au:"**Augusto RC**, Magalhães ACS, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"41(1)",doi:"10.5216/rpt.v41i1.17798"},
  {y:2011,t:"article",ti:"Biomphalaria glabrata: exposure to different amounts of calcium carbonate influences growth, sexual maturity and pearl formation [in Portuguese]",au:"da Silva Magalhães AC, **de Carvalho Augusto R**, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"40(4):341–347"},
 ];
 
@@ -571,6 +572,8 @@ const gk=p=>p.t==="submitted"?"In review":p.y;
 let filter="all", query="";
 const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
 const doiKey=d=>String(d||"").toLowerCase().replace(/\.\d+$/,"");
+const tkey=s=>norm(s).slice(0,48);
+const OK=/^(journal-article|book-chapter|preprint|posted-content)$/;
 
 function renderPubs(){
   const box=document.getElementById("pubs");
@@ -596,12 +599,12 @@ document.getElementById("q").addEventListener("input",e=>{query=e.target.value;r
 const stat=document.getElementById("pstat");
 function merge(items){
   const seenD=new Set(PUBS.map(p=>doiKey(p.doi)).filter(Boolean));
-  const seenT=new Set(PUBS.map(p=>norm(p.ti)));
+  const seenT=new Set(PUBS.map(p=>tkey(p.ti)));
   let n=0;
   items.forEach(it=>{
-    if(!it.ti||!it.y)return;
-    if((it.doi&&seenD.has(doiKey(it.doi)))||seenT.has(norm(it.ti)))return;
-    PUBS.push(it);n++;if(it.doi)seenD.add(doiKey(it.doi));seenT.add(norm(it.ti));
+    if(!it.ti||!it.y||!OK.test(it.raw||""))return;
+    if((it.doi&&seenD.has(doiKey(it.doi)))||seenT.has(tkey(it.ti)))return;
+    PUBS.push(it);n++;if(it.doi)seenD.add(doiKey(it.doi));seenT.add(tkey(it.ti));
   });
   return n;
 }
@@ -612,13 +615,13 @@ async function fromOrcid(){
   const j=await r.json();
   return (j.group||[]).map(g=>{const s=(g["work-summary"]||[])[0]||{};
     const ids=((s["external-ids"]||{})["external-id"])||[];const d=ids.find(i=>i["external-id-type"]==="doi");
-    return {y:+(((s["publication-date"]||{}).year||{}).value||0),t:mapType(s.type||""),ti:((s.title||{}).title||{}).value||"",v:(s["journal-title"]||{}).value||"",doi:d?d["external-id-value"]:"",au:""};});
+    return {y:+(((s["publication-date"]||{}).year||{}).value||0),t:mapType(s.type||""),ti:((s.title||{}).title||{}).value||"",v:(s["journal-title"]||{}).value||"",doi:d?d["external-id-value"]:"",au:"",raw:s.type||""};});
 }
 async function fromCrossref(){
   const r=await fetch(`https://api.crossref.org/works?filter=orcid:${ORCID}&rows=200`);
   if(!r.ok)throw new Error("crossref "+r.status);
   const j=await r.json();
-  return ((j.message||{}).items||[]).map(it=>({y:+((((it.issued||{})["date-parts"]||[[0]])[0]||[0])[0]),t:mapType(it.type||""),ti:(it.title||[""])[0],v:(it["container-title"]||[""])[0]||"",doi:it.DOI,
+  return ((j.message||{}).items||[]).map(it=>({y:+((((it.issued||{})["date-parts"]||[[0]])[0]||[0])[0]),t:mapType(it.type||""),ti:(it.title||[""])[0],v:(it["container-title"]||[""])[0]||"",doi:it.DOI,raw:it.type||"",
     au:(it.author||[]).map(a=>{const n=`${a.family||""} ${(a.given||"").split(/[\s-]+/).map(x=>x[0]||"").join("")}`.trim();return /augusto/i.test(a.family||"")?`**${n}**`:n}).join(", ")}));
 }
 async function sync(manual){
@@ -629,7 +632,7 @@ async function sync(manual){
   const n=merge(items);renderPubs();
   stat.textContent=n?`${n} new record${n>1?"s":""} added from ${src}.`:(manual?`Up to date with ${src}.`:"");
 }
-document.getElementById("sync").addEventListener("click",()=>sync(true));
+
 
 /* team */
 const PEOPLE=[
@@ -725,7 +728,6 @@ document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
 }));
 
 renderPubs();
-sync(false);
 })();
 </script>
 
