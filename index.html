@@ -181,9 +181,17 @@ section{padding-block:clamp(60px,8vw,110px)}
 .sync:hover{background:var(--soft)}
 .pub-status{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);margin:-8px 0 18px;min-height:1.2em}
 .pubs{border-top:1px solid var(--line)}
-.year-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;border-bottom:1px solid var(--line);padding-block:20px}
-.year-row>.y{font-family:var(--f-display);font-weight:780;font-stretch:115%;font-size:1.5rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.2}
-.year-row>.y.ir{font-size:1rem;font-family:var(--f-mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--shell);padding-top:4px}
+.year-row{border-bottom:1px solid var(--line)}
+.year-row summary{display:flex;align-items:center;gap:20px;padding-block:16px;cursor:pointer;list-style:none}
+.year-row summary::-webkit-details-marker{display:none}
+.year-row summary:hover .y,.year-row summary:focus-visible .y{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.year-row summary .y{min-width:110px}
+.year-row .cnt{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.year-row .chev{margin-left:auto;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin-right:6px}
+.year-row[open] .chev{transform:rotate(225deg)}
+.year-row ol{padding:0 0 22px 130px !important}
+.year-row .y{font-family:var(--f-display);font-weight:780;font-stretch:115%;font-size:1.5rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.2}
+.year-row .y.ir{font-size:1rem;font-family:var(--f-mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--shell);padding-top:4px}
 .year-row ol{list-style:none;margin:0;padding:0;display:grid;gap:18px}
 .pub{display:grid;gap:4px;min-width:0}
 .pub .t{font-weight:600;font-size:1rem;line-height:1.4}
@@ -196,7 +204,7 @@ section{padding-block:clamp(60px,8vw,110px)}
 .badge.ch{border:1px solid var(--line);color:var(--muted);background:none}
 .pub .v a{font-family:var(--f-mono);font-size:.76rem;word-break:break-all}
 .empty{padding:24px 0;color:var(--muted)}
-@media (max-width:600px){.year-row{grid-template-columns:1fr;gap:10px}}
+@media (max-width:600px){.year-row ol{padding-left:0 !important}.year-row summary .y{min-width:72px}}
 
 /* network */
 .map{background:var(--night-2);border:1px solid var(--night-line);border-radius:var(--r);padding:10px;overflow-x:auto}
@@ -604,6 +612,7 @@ const PUBS=[
 const BADGE={article:["Article",""],preprint:["Preprint","pre"],chapter:["Chapter","ch"],submitted:["In review","sub"]};
 const gk=p=>p.t==="submitted"?"In review":p.y;
 let filter="all", query="";
+const openY=new Set();
 const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
 const doiKey=d=>String(d||"").toLowerCase().replace(/\.\d+$/,"");
 const tkey=s=>norm(s).slice(0,48);
@@ -621,8 +630,11 @@ function renderPubs(){
       const au=p.au?esc(p.au).replace(ME,"<b>$2</b>"):"";
       return `<li class="pub"><span class="t">${ital(p.ti)}</span>${au?`<span class="a">${au}</span>`:""}<span class="v"><span class="badge ${bc}">${bl}</span><span><i>${ital(p.v||"")}</i>${p.vol?` ${esc(p.vol)}`:""}</span>${p.doi?`<a href="https://doi.org/${esc(p.doi)}">doi:${esc(p.doi)}</a>`:""}</span></li>`;
     }).join("");
-    return `<div class="year-row"><div class="y${y==="In review"?" ir":""}">${y}</div><ol>${items}</ol></div>`;
+    const n=list.filter(p=>gk(p)===y).length;
+    const op=(q||openY.has(String(y)))?" open":"";
+    return `<details class="year-row"${op} data-y="${y}"><summary><span class="y${y==="In review"?" ir":""}">${y}</span><span class="cnt">${n} publication${n>1?"s":""}</span><span class="chev" aria-hidden="true"></span></summary><ol>${items}</ol></details>`;
   }).join("");
+  box.querySelectorAll("details").forEach(d=>d.addEventListener("toggle",()=>{if(q)return;d.open?openY.add(d.dataset.y):openY.delete(d.dataset.y)}));
 }
 
 document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
