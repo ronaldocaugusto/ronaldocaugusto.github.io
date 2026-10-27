@@ -51,11 +51,16 @@ p{margin:0}
 @media (max-width:860px){.bar .wrap{flex-wrap:wrap;gap:0;padding-block:8px}.nav{margin-left:-10px;width:calc(100% + 10px)}.brand{padding-block:4px}}
 
 /* hero */
-.hero{background:var(--night);color:var(--night-ink);overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:clamp(24px,5vw,72px);align-items:end;padding-top:clamp(40px,6vw,80px)}
+.hero{background:var(--night);color:var(--night-ink);overflow:hidden;position:relative;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,14,14,.92) 0%,rgba(14,14,14,.78) 45%,rgba(14,14,14,.45) 100%),linear-gradient(0deg,rgba(14,14,14,.9) 0%,rgba(14,14,14,0) 35%)}
+@media (max-width:860px){.hero-bg::after{background:rgba(14,14,14,.8)}}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);align-items:end;padding-top:clamp(56px,9vw,128px);min-height:min(82vh,760px)}
+.hero-text{max-width:720px}
 .hero-text{padding-bottom:clamp(40px,6vw,88px);display:grid;gap:22px}
 .hero .eyebrow{color:var(--glow)}
-.hero h1{font-size:clamp(2.5rem,1.2rem + 5vw,5.2rem);font-weight:800;font-stretch:120%;letter-spacing:-.025em;line-height:.98}
+.hero h1{font-size:clamp(2rem,1.1rem + 2.6vw,3.4rem);font-weight:800;font-stretch:112%;letter-spacing:-.02em;line-height:1.05;max-width:20ch}
 .role{font-family:var(--f-mono);font-size:.82rem;color:var(--night-muted);letter-spacing:.02em;line-height:1.6}
 .hero .intro{font-size:clamp(1.12rem,1rem + .5vw,1.34rem);line-height:1.5;max-width:40ch}
 .hero .intro2{color:var(--night-muted);max-width:56ch}
@@ -119,6 +124,12 @@ section{padding-block:clamp(60px,8vw,110px)}
 .dark{background:var(--night);color:var(--night-ink)}
 .dark .lead{color:var(--night-muted)}
 .dark .eyebrow{color:var(--glow)}
+.pi{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--night-line)}
+.pi img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:var(--r);filter:grayscale(1)}
+.pi h3{font-size:1.5rem;margin:.2em 0 .4em}
+.pi p{color:var(--night-muted);max-width:62ch;margin:0}
+.pi .role{color:var(--glow)}
+@media (max-width:560px){.pi{grid-template-columns:120px minmax(0,1fr)}.pi p{font-size:.92rem}}
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .person{background:var(--night-2);border:1px solid var(--night-line);border-radius:var(--r);padding:22px;display:grid;gap:6px;align-content:start}
 .person .role{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--glow)}
@@ -235,7 +246,6 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
 
 <header class="bar">
   <div class="wrap">
-    <a class="brand" href="#top">R. de Carvalho Augusto</a>
     <nav class="nav" aria-label="Sections">
       <a href="#research">Research</a><a href="#team">Team</a><a href="#teaching">Teaching</a><a href="#publications">Publications</a><a href="#network">Network</a><a href="#outreach">Outreach</a><a href="#contact">Contact</a>
     </nav>
@@ -244,13 +254,13 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
 
 <main id="top">
 <div class="hero">
+  <div class="hero-bg" aria-hidden="true"><video id="herovid" muted loop playsinline preload="none" poster="img/media/hero-poster.jpg"></video></div>
   <div class="wrap">
     <div class="hero-text">
       <p class="eyebrow">Parasite virulence · Epigenetics · One Health</p>
-      <h1>Ronaldo de Carvalho Augusto</h1>
-      <p class="role">Junior Professor Chair · IHPE UMR 5244<br>Université de Perpignan Via Domitia, France</p>
-      <p class="intro">The group studies why parasites become more or less harmful, and how the environment tips the balance.</p>
-      <p class="intro2">Led by Ronaldo de Carvalho Augusto at IHPE, the team follows the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. It combines experimental infections, epigenomics and functional genomics with field work in Brazil and Mozambique to predict where schistosomiasis may emerge next, including in southern Europe. The group was established with support from the French National Research Agency (<span style="white-space:nowrap">ANR-22-CPJ1-0056-01</span>).</p>
+      <h1>Our group studies why parasites become more or less harmful, and how the environment tips the balance.</h1>
+      <p class="role">Led by Ronaldo de Carvalho Augusto · Junior Professor Chair<br>IHPE UMR 5244 · Université de Perpignan Via Domitia, France</p>
+      <p class="intro2">The team follows the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. It combines experimental infections, epigenomics and functional genomics with field work in Brazil and Mozambique to predict where schistosomiasis may emerge next, including in southern Europe. The group was established with support from the French National Research Agency (<span style="white-space:nowrap">ANR-22-CPJ1-0056-01</span>).</p>
       <div class="links" aria-label="Research profiles">
         <a href="https://orcid.org/0000-0003-1147-0043">ORCID</a>
         <a href="https://scholar.google.com/citations?user=uB1Vt0IAAAAJ">Google Scholar</a>
@@ -261,9 +271,6 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <a href="#contact">Email</a>
       </div>
     </div>
-    <figure class="portrait" style="margin:0">
-      <img src="img/portrait.jpg" width="1000" height="1500" alt="Portrait of Ronaldo de Carvalho Augusto, black and white">
-    </figure>
   </div>
 </div>
 
@@ -394,6 +401,14 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
       <h2>People</h2>
       <p class="lead">A team built across France, Brazil and Mozambique, connecting Portuguese-speaking endemic countries with IHPE, a WHO-recognized centre for schistosomiasis research.</p>
     </div>
+    <div class="pi">
+      <img src="img/portrait.jpg" width="1000" height="1500" loading="lazy" alt="Portrait of Ronaldo de Carvalho Augusto, black and white">
+      <div>
+        <span class="role">Group leader</span>
+        <h3>Ronaldo de Carvalho Augusto</h3>
+        <p>Junior Professor Chair at IHPE (UMR 5244), Université de Perpignan Via Domitia. Biologist from Rio de Janeiro, trained at Fiocruz, with postdoctoral work at IHPE, ENS de Lyon and the University of Utah.</p>
+      </div>
+    </div>
     <div class="people" id="people"></div>
     <div class="team-foot">
       <div>
@@ -481,6 +496,8 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
           <li><a href="https://ihpe.fr/ntd-day-2023-ronaldo/">Tropical diseases today, European diseases tomorrow</a><small>Video for WHO World NTD Day, 2023</small></li>
           <li><a href="https://www.lasemaineduroussillon.com/societe/one-health-une-strategie-pour-faire-face-aux-maladies-de-demain-12658/">One Health : une stratégie pour faire face aux maladies de demain</a><small>La Semaine du Roussillon, 2024 · with M. M. Mourão</small></li>
           <li><a href="https://www.youtube.com/watch?v=8yhtT2AhyHw">Au cœur de l’UPVD #6</a><small>UPVD video series, 2025</small></li>
+          <li><a href="https://www.univ-perp.fr/recherche/intersections-4-des-eaux-et-debats-1">Étudier et combattre : la recherche-action contre la bilharziose</a><small>InterSections n°4, UPVD research magazine, 2025, pp. 28–29 · with J. Boissier, B. Savassi and R. Galinier</small></li>
+          <li><a href="https://www.univ-perp.fr/recherche/intersections-2-les-energies-1">Maladies tropicales d’aujourd’hui, maladies européennes de demain</a><small>InterSections n°2, UPVD research magazine, 2023, pp. 36–39 · interview</small></li>
         </ul>
       </div>
       <div>
@@ -683,6 +700,12 @@ const CAREER=[
  ["2012","MSc in Veterinary Parasitology, UFRRJ, Brazil"]
 ];
 document.getElementById("career").innerHTML=CAREER.map(([d,t])=>`<li>${esc(t)}<small>${d}</small></li>`).join("");
+
+/* hero background video: skipped on small screens, data saver and reduced motion */
+(()=>{const v=document.getElementById("herovid");if(!v)return;
+ const c=navigator.connection||{};
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches||c.saveData||/2g/.test(c.effectiveType||"")||innerWidth<700)return;
+ v.src="img/media/hero.mp4";v.play().catch(()=>{});})();
 
 /* slideshows */
 document.querySelectorAll("[data-slides]").forEach(box=>{
