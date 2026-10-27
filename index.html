@@ -98,6 +98,19 @@ section{padding-block:clamp(60px,8vw,110px)}
 .fig figcaption{font-size:.84rem;color:var(--muted);line-height:1.45}
 .fig figcaption .cr{display:block;font-family:var(--f-mono);font-size:.7rem;margin-top:4px;color:var(--muted);opacity:.85}
 @media (max-width:860px){.story{grid-template-columns:1fr}.story:nth-of-type(even) .fig{order:0}}
+.slides{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#0E0E0E;aspect-ratio:4/3}
+.slides.light{background:#fff}
+.slides .track{display:flex;height:100%;transition:transform .45s ease}
+.slides .slide{flex:0 0 100%;margin:0;height:100%;display:grid;place-items:center}
+.slides .slide{min-width:0;overflow:hidden}
+.slides .slide img{width:100%;height:100%;object-fit:contain}
+.slides .nav-b{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(14,14,14,.72);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.slides .prev{left:10px}.slides .next{right:10px}
+.slides .dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:6px;justify-content:center}
+.slides .dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.45);cursor:pointer;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.slides .dots button[aria-selected="true"]{background:var(--glow)}
+@media (prefers-reduced-motion: reduce){.slides .track{transition:none}}
+.frame.video video{display:block;width:100%;height:auto;background:#000}
 .order{display:grid;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,3vw,28px)}
 .order svg{width:100%;height:auto}
 .order .k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -188,6 +201,10 @@ section{padding-block:clamp(60px,8vw,110px)}
 .logos li{height:76px;border-radius:8px;background:#fff;display:grid;place-items:center;padding:12px 14px}
 .logos li.dk{background:#1d2a5c}
 .logos li.bk{background:#1E1E1C}
+.logos li.tl{padding:6px 10px}
+.logos li.tl img{max-height:64px}
+.logos li.rd{background:#AB070E;padding:0}
+.logos li.rd img{max-height:76px}
 .logos img{max-width:100%;max-height:52px;object-fit:contain}
 .logos li.txt{background:var(--night-2);border:1px dashed var(--night-line);color:var(--night-ink);font-family:var(--f-display);font-weight:700;font-stretch:108%;font-size:.95rem;text-align:center;line-height:1.15}
 
@@ -211,8 +228,8 @@ section{padding-block:clamp(60px,8vw,110px)}
 footer{background:var(--night);color:var(--night-muted);font-size:.84rem}
 footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 </style>
-
 </head><body>
+
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#top">R. de Carvalho Augusto</a>
@@ -229,12 +246,13 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
       <p class="eyebrow">Parasite virulence · Epigenetics · One Health</p>
       <h1>Ronaldo de Carvalho Augusto</h1>
       <p class="role">Junior Professor Chair · IHPE UMR 5244<br>Université de Perpignan Via Domitia, France</p>
-      <p class="intro">I study why parasites become more or less harmful, and how the environment tips the balance.</p>
-      <p class="intro2">I follow the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. I combine experimental infections, epigenomics and functional genomics with field work in Brazil, Mozambique and Benin, so that we can predict where schistosomiasis may emerge next, including in southern Europe.</p>
+      <p class="intro">The group studies why parasites become more or less harmful, and how the environment tips the balance.</p>
+      <p class="intro2">Led by Ronaldo de Carvalho Augusto at IHPE, the team follows the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. It combines experimental infections, epigenomics and functional genomics with field work in Brazil and Mozambique to predict where schistosomiasis may emerge next, including in southern Europe. The group was established with support from the French National Research Agency (<span style="white-space:nowrap">ANR-22-CPJ1-0056-01</span>).</p>
       <div class="links" aria-label="Research profiles">
         <a href="https://orcid.org/0000-0003-1147-0043">ORCID</a>
         <a href="https://scholar.google.com/citations?user=uB1Vt0IAAAAJ">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Ronaldo-De-Carvalho-Augusto">ResearchGate</a>
+        <a href="http://lattes.cnpq.br/2113501196557394">Lattes</a>
         <a href="https://www.linkedin.com/in/ronaldo-de-carvalho-augusto-04132529/">LinkedIn</a>
         <a href="CV_Ronaldo_de_Carvalho_Augusto_2026.pdf">CV (PDF)</a>
         <a href="#contact">Email</a>
@@ -248,10 +266,10 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
 
 <div class="thesis" aria-label="At a glance">
   <div class="wrap">
+    <div class="stat"><b>29</b><span>peer-reviewed articles, plus 2 book chapters</span></div>
+    <div class="stat"><b>5</b><span>PhD theses co-supervised in France, Brazil and Mozambique</span></div>
+    <div class="stat"><b>6</b><span>Master's students supervised</span></div>
     <div class="stat"><b>11</b><span>competitive grants since 2022, as coordinator or partner</span></div>
-    <div class="stat"><b>5 + 1</b><span>PhD theses co-supervised in France, Brazil and Mozambique, plus one postdoc</span></div>
-    <div class="stat"><b>2</b><span>new courses: an international MOOC and the AquaACROSS summer school</span></div>
-    <div class="stat"><b>MoU</b><span>Fiocruz–UPVD agreement anchoring a France–Brazil research corridor</span></div>
   </div>
 </div>
 
@@ -260,7 +278,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="sec-head">
       <p class="eyebrow">Research</p>
       <h2>Tropical diseases of today, European diseases of tomorrow</h2>
-      <p class="lead">Virulence is not a fixed trait of a parasite. It emerges from the encounter between a parasite, its hosts and the water, food and microbes around them. My group asks how that encounter is changing, and what it means for disease.</p>
+      <p class="lead">Virulence is not a fixed trait of a parasite. It emerges from the encounter between a parasite, its hosts and the water, food and microbes around them. The group asks how that encounter is changing, and what it means for disease.</p>
     </div>
 
     <article class="story">
@@ -284,15 +302,24 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <p class="q">Environment and virulence</p>
         <h3>Can environmental cues change a parasite?</h3>
         <div class="body">
-          <p>A schistosome reads its environment at every step. Free-living larvae swim through water whose temperature, chemistry and contaminants vary from site to site; inside its hosts, the parasite meets diet, immunity and other pathogens. We ask how these cues reprogram its development, virulence and transmission.</p>
-          <p>We expose larvae to realistic stressors, from warming to pesticides, bisphenols and PFAS, and follow the consequences through the whole life cycle, including in the next generation. Earlier, we showed that a plant-derived molluscicide damages the adult worms that develop from exposed cercariae.</p>
+          <p>A schistosome reads its environment at every step. Free-living larvae swim through water whose temperature, chemistry and contaminants vary from site to site; inside its hosts, the parasite meets diet, immunity and other pathogens. The group asks how these cues reprogram its development, virulence and transmission.</p>
+          <p>Larvae are exposed to realistic stressors, from warming to pesticides, bisphenols and PFAS, and the consequences are followed through the whole life cycle, including in the next generation. Correlative imaging (SEM, TEM and confocal microscopy) of the worm surface, the tegument, reveals how these cues alter the parasite’s main interface with its host.</p>
           <div class="tags"><span class="tag">temperature</span><span class="tag">contaminants</span><span class="tag">developmental plasticity</span><span class="tag">transgenerational effects</span></div>
-          <p class="refs">Key papers: <a href="https://doi.org/10.3389/fenvs.2024.1410821">Costa et al. 2024</a> · <a href="https://doi.org/10.1371/journal.pntd.0005789">Augusto et al. 2017</a> · <a href="https://doi.org/10.1186/s13071-020-04367-w">Augusto et al. 2020</a></p>
+          <p class="refs">Key papers: <a href="https://doi.org/10.3389/fenvs.2024.1410821">Costa et al. 2024</a> · <a href="https://doi.org/10.1016/j.micron.2026.104119">de Carvalho Augusto et al. 2026</a> · <a href="https://doi.org/10.1371/journal.pntd.0005789">Augusto et al. 2017</a></p>
         </div>
       </div>
       <figure class="fig">
-        <div class="frame dark"><img src="img/tegument.jpg" width="1100" height="1196" loading="lazy" alt="Scanning electron micrographs of adult male worms. Control worms have a regular surface with tubercles; worms from latex-exposed cercariae show a deformed oral sucker and a flattened, damaged tegument."></div>
-        <figcaption>Adult male worms seen by scanning electron microscopy: control (left) and after cercarial exposure to <em>Euphorbia milii</em> latex (right).<span class="cr">Augusto et al. 2017, PLOS Neglected Tropical Diseases · CC BY 4.0</span></figcaption>
+        <div class="slides dark" data-slides>
+          <div class="track">
+            <figure class="slide" data-cap="Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM)."><img src="img/media/teg-1.jpg" width="1200" height="855" loading="lazy" alt="Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM)."></figure>
+            <figure class="slide" data-cap="Tegument surface by SEM (A–C) and confocal laser scanning microscopy (D–F)."><img src="img/media/teg-2.jpg" width="1200" height="1352" loading="lazy" alt="Tegument surface by SEM (A–C) and confocal laser scanning microscopy (D–F)."></figure>
+            <figure class="slide" data-cap="Tegumental tubercles by confocal microscopy and transmission electron microscopy (TEM)."><img src="img/media/teg-3.jpg" width="1200" height="929" loading="lazy" alt="Tegumental tubercles by confocal microscopy and transmission electron microscopy (TEM)."></figure>
+            <figure class="slide" data-cap="Tegumental spines by SEM (A, B) and TEM (C, D)."><img src="img/media/teg-4.jpg" width="1200" height="981" loading="lazy" alt="Tegumental spines by SEM (A, B) and TEM (C, D)."></figure>
+          </div>
+          <button type="button" class="nav-b prev" aria-label="Previous image">‹</button><button type="button" class="nav-b next" aria-label="Next image">›</button>
+          <div class="dots" role="tablist"></div>
+        </div>
+        <figcaption><span class="slide-cap">Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM).</span><span class="cr">de Carvalho Augusto et al. 2026, <i>Micron</i> 208:104119 · <a href="https://doi.org/10.1016/j.micron.2026.104119">doi:10.1016/j.micron.2026.104119</a> · CC BY-NC 4.0</span></figcaption>
       </figure>
     </article>
 
@@ -302,13 +329,13 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <h3>Where is virulence written?</h3>
         <div class="body">
           <p>Schistosomes change body plan several times without changing their DNA sequence. Chromatin, histone marks and non-coding RNAs carry much of that information, and they also respond to the environment.</p>
-          <p>We map these layers across the life cycle and during sexual maturation, and we build methods that work on the tiny amounts of material a single larval stage provides: ChIP, automated ChIPmentation and a simple ATAC-seq protocol for population epigenetics.</p>
+          <p>The group maps these layers across the life cycle and during sexual maturation, and develops methods that work on the tiny amounts of material a single larval stage provides: ChIP, automated ChIPmentation and a simple ATAC-seq protocol for population epigenetics.</p>
           <div class="tags"><span class="tag">histone code</span><span class="tag">ATAC-seq</span><span class="tag">lncRNA</span><span class="tag">gonad maturation</span></div>
           <p class="refs">Key papers: <a href="https://doi.org/10.1371/journal.ppat.1007066">Roquis et al. 2018</a> · <a href="https://doi.org/10.3390/ncrna11020025">Augusto et al. 2025</a> · <a href="https://doi.org/10.12688/wellcomeopenres.15552.2">Augusto et al. 2021</a></p>
         </div>
       </div>
       <figure class="fig">
-        <div class="frame" style="background:#fff"><img src="img/histone-marks.jpg" width="1280" height="1215" loading="lazy" alt="Diagram of RNA polymerase II transcription with the histone marks found at each step (pre-initiation, promoter release, elongation) in testes of mature and immature male worms: H3K27me3, H3K9me3, H3K4me3, H3K23ac, H3K36me3 and H4K12ac."></div>
+        <div class="frame" style="background:#fff"><img src="img/histone-marks-v2.jpg" width="1280" height="1215" loading="lazy" alt="Diagram of RNA polymerase II transcription with the histone marks found at each step (pre-initiation, promoter release, elongation) in testes of mature and immature male worms: H3K27me3, H3K9me3, H3K4me3, H3K23ac, H3K36me3 and H4K12ac."></div>
         <figcaption>Histone marks along the transcription cycle differ between immature and mature testes of <em>S. mansoni</em>.<span class="cr">Augusto lab · created with BioRender</span></figcaption>
       </figure>
     </article>
@@ -318,37 +345,22 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <p class="q">Disease severity</p>
         <h3>What happens when parasites share a host?</h3>
         <div class="body">
-          <p>Where malaria and schistosomiasis overlap, many people carry both. A meta-analysis and systematic review led by my PhD student examined over-dispersion in malaria–schistosome co-infections.</p>
-          <p>In a mouse model combining <em>S. mansoni</em> and <em>Plasmodium yoelii</em>, we vary the order of infection to ask how timing shapes parasite fitness and host pathology.</p>
-          <div class="tags"><span class="tag">co-infection</span><span class="tag">infection chronology</span><span class="tag">pathology</span><span class="tag">microbiome</span></div>
-          <p class="refs">Key work: <a href="https://doi.org/10.1101/2025.10.31.25339164">Koellsch-Amet et al. 2026, Infectious Diseases of Poverty</a></p>
+          <p>Malaria and schistosomiasis overlap across much of the tropics, and many people carry both parasites at once. This research line examines how co-infection affects host health, from survival to organ pathology, and how the two parasites influence each other inside the same host.</p>
+          <p>Field data and experimental infections are combined to follow the dynamics of parasites that share a host, including how the order and timing of infections shape their growth, reproduction and transmission.</p>
+          <div class="tags"><span class="tag">co-infection</span><span class="tag">host health</span><span class="tag">parasite dynamics</span><span class="tag">malaria</span></div>
         </div>
       </div>
       <figure class="fig">
-        <div class="order" role="img" aria-label="Diagram: two infection schedules compared, Plasmodium first then schistosome, and schistosome first then Plasmodium; worm burden, egg output and host pathology are measured.">
-          <p class="k">Does the order of infection matter?</p>
-          <svg viewBox="0 0 520 210" aria-hidden="true">
-            <g font-family="Instrument Sans, sans-serif" font-size="13" fill="var(--ink)">
-              <line x1="20" y1="60" x2="300" y2="60" stroke="var(--line)" stroke-width="2"/>
-              <circle cx="60" cy="60" r="16" fill="var(--shell)"/><text x="60" y="64.5" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Pl</text>
-              <circle cx="200" cy="60" r="16" fill="var(--accent)"/><text x="200" y="64.5" text-anchor="middle" fill="var(--accent-ink)" font-size="11" font-weight="700">Sm</text>
-              <text x="60" y="100" text-anchor="middle" fill="var(--muted)" font-size="11.5">malaria</text>
-              <text x="200" y="100" text-anchor="middle" fill="var(--muted)" font-size="11.5">schistosome</text>
-              <path d="M300 60h24" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ah)"/>
-              <text x="340" y="55" font-weight="600">Worm burden,</text><text x="340" y="73" font-weight="600">egg output?</text>
-              <line x1="20" y1="160" x2="300" y2="160" stroke="var(--line)" stroke-width="2"/>
-              <circle cx="60" cy="160" r="16" fill="var(--accent)"/><text x="60" y="164.5" text-anchor="middle" fill="var(--accent-ink)" font-size="11" font-weight="700">Sm</text>
-              <circle cx="200" cy="160" r="16" fill="var(--shell)"/><text x="200" y="164.5" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Pl</text>
-              <text x="60" y="200" text-anchor="middle" fill="var(--muted)" font-size="11.5">schistosome</text>
-              <text x="200" y="200" text-anchor="middle" fill="var(--muted)" font-size="11.5">malaria</text>
-              <path d="M300 160h24" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#ah)"/>
-              <text x="340" y="155" font-weight="600">Host pathology,</text><text x="340" y="173" font-weight="600">survival?</text>
-              <text x="20" y="20" fill="var(--muted)" font-size="11" font-family="JetBrains Mono, monospace">TIME →</text>
-            </g>
-            <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink)"/></marker></defs>
-          </svg>
-          <p class="refs">Mouse model, <em>S. mansoni</em> × <em>P. yoelii</em>; PhD project of Célia Koellsch-Amet.</p>
+        <div class="slides light" data-slides>
+          <div class="track">
+            <figure class="slide" data-cap="Global distribution of malaria, schistosomiasis and their co-occurrence, 2017–2022: green, malaria only; blue, schistosomiasis only; red, both."><img src="img/media/coinf-map.jpg" width="1400" height="711" loading="lazy" alt="Global distribution of malaria, schistosomiasis and their co-occurrence, 2017–2022: green, malaria only; blue, schistosomiasis only; red, both."></figure>
+            <figure class="slide" data-cap="Observed versus expected malaria–schistosomiasis co-infection in women: odds ratios with 95% confidence intervals across field studies."><img src="img/media/coinf-forest-a.jpg" width="1400" height="960" loading="lazy" alt="Observed versus expected malaria–schistosomiasis co-infection in women: odds ratios with 95% confidence intervals across field studies."></figure>
+            <figure class="slide" data-cap="Observed versus expected malaria–schistosomiasis co-infection in men: odds ratios with 95% confidence intervals across field studies."><img src="img/media/coinf-forest-b.jpg" width="1400" height="787" loading="lazy" alt="Observed versus expected malaria–schistosomiasis co-infection in men: odds ratios with 95% confidence intervals across field studies."></figure>
+          </div>
+          <button type="button" class="nav-b prev" aria-label="Previous image">‹</button><button type="button" class="nav-b next" aria-label="Next image">›</button>
+          <div class="dots" role="tablist"></div>
         </div>
+        <figcaption><span class="slide-cap">Global distribution of malaria, schistosomiasis and their co-occurrence, 2017–2022: green, malaria only; blue, schistosomiasis only; red, both.</span><span class="cr">Koellsch-Amet et al. 2026, <i>Infectious Diseases of Poverty</i> 15:107, Figs. 2 and 4 (A, B) · <a href="https://doi.org/10.1186/s40249-026-01490-1">doi:10.1186/s40249-026-01490-1</a> · CC BY 4.0</span></figcaption>
       </figure>
     </article>
 
@@ -357,15 +369,15 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <p class="q">Vector competence</p>
         <h3>Why do some snails transmit and others resist?</h3>
         <div class="body">
-          <p>Transmission starts only if the miracidium is compatible with its snail. We label larvae with non-transgenic fluorescent dyes to follow them inside the snail, and we study snail microRNAs and clock genes linked to resistance in <em>Biomphalaria</em> and <em>Bulinus</em>.</p>
-          <p>With partners at Fiocruz, we also test near-infrared spectroscopy as a fast, non-invasive way to tell snail species apart and detect infection in the field.</p>
+          <p>Transmission starts only if the miracidium is compatible with its snail. The group labels larvae with non-transgenic fluorescent dyes to follow them inside the snail, and studies snail microRNAs and clock genes linked to resistance in <em>Biomphalaria</em> and <em>Bulinus</em>.</p>
+          <p>With partners at Fiocruz, the team also tests near-infrared spectroscopy as a fast, non-invasive way to tell snail species apart and detect infection in the field.</p>
           <div class="tags"><span class="tag">microRNA</span><span class="tag">circadian genes</span><span class="tag">fluorescent labelling</span><span class="tag">NIR spectroscopy</span></div>
           <p class="refs">Key papers: <a href="https://doi.org/10.3389/fimmu.2023.1293009">Duval et al. 2023</a> · <a href="https://doi.org/10.12688/wellcomeopenres.13488.1">Mouahid et al. 2018</a></p>
         </div>
       </div>
       <figure class="fig">
-        <div class="frame dark"><img src="img/sporocyst.jpg" width="1358" height="682" loading="lazy" alt="Confocal images: a green fluorescent schistosome larva within red and blue stained snail tissue."></div>
-        <figcaption>Fluorescently labelled schistosome larvae (green) inside the tissues of their snail host.<span class="cr">Duval et al. 2023, Frontiers in Immunology · CC BY 4.0</span></figcaption>
+        <div class="frame dark video"><video src="img/media/vector-video.mp4" poster="img/media/vector-poster.jpg" width="800" height="800" controls autoplay muted loop playsinline preload="metadata" aria-label="Confocal image stack through snail tissue showing fluorescently labelled schistosome larvae (green) among host cell nuclei (blue)."></video></div>
+        <figcaption>Confocal stack through snail tissue: fluorescently labelled schistosome larvae (green) among host cell nuclei (blue).<span class="cr">Duval et al. 2023, Frontiers in Immunology, Video S8 · CC BY 4.0</span></figcaption>
       </figure>
     </article>
 
@@ -401,7 +413,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="sec-head">
       <p class="eyebrow">Teaching</p>
       <h2>Teaching and training</h2>
-      <p class="lead">I teach mainly at master's level at UPVD, in English and French, and train students in Brazil. Teaching follows the research: parasitology, functional genomics and how scientists communicate.</p>
+      <p class="lead">Teaching takes place mainly at master's level at UPVD, in English and French, with postgraduate training in Brazil. Teaching follows the research: parasitology, functional genomics and how scientists communicate.</p>
     </div>
     <div class="cards">
       <article class="card feature"><p class="lvl">MOOC · France Université Numérique · launching September 2026</p><h3>Systems Biology of Parasites &amp; Disease Vectors</h3><p>28 lectures by 19 experts from the Americas, Africa and Europe, covering systems biology, parasitology, vector biology and One Health. The core of the Perpignan School of Parasitology.</p></article>
@@ -445,7 +457,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="sec-head">
       <p class="eyebrow">Network</p>
       <h2>Collaborations across four continents</h2>
-      <p class="lead">Partners in funded projects, co-supervisions and co-authored work. The shaded band marks the tropics, where most schistosomiasis transmission happens today.</p>
+      <p class="lead">Partners in funded projects, co-supervisions and co-authored work.</p>
     </div>
     <div class="map"><svg id="map" viewBox="0 0 760 400" role="img" aria-label="Map of collaborating institutions"></svg></div>
     <div class="legend" id="legend"></div>
@@ -500,7 +512,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="sec-head">
       <p class="eyebrow">Contact</p>
       <h2>Students, collaborations and invitations</h2>
-      <p class="lead">I welcome enquiries from prospective master's and PhD students and postdocs, and proposals for joint projects.</p>
+      <p class="lead">The group welcomes enquiries from prospective master's and PhD students and postdocs, and proposals for joint projects.</p>
     </div>
     <div class="contact">
       <div class="cbox"><h3>Email</h3>
@@ -516,6 +528,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
           <a href="https://scholar.google.com/citations?user=uB1Vt0IAAAAJ">Google Scholar</a>
           <a href="https://www.researchgate.net/profile/Ronaldo-De-Carvalho-Augusto">ResearchGate</a>
           <a href="https://ihpe.fr/ihpe-de-carvalho-augusto-ronaldo/">IHPE lab page</a>
+          <a href="http://lattes.cnpq.br/2113501196557394">Currículo Lattes</a>
           <a href="https://www.linkedin.com/in/ronaldo-de-carvalho-augusto-04132529/">LinkedIn</a>
         </div>
       </div>
@@ -566,7 +579,7 @@ const PUBS=[
  {y:2016,t:"article",ti:"La primera sonda de electrones de microanálisis de rayos X de la composición elemental del producto liofilizado de latex de Euphorbia milii var. hislopii y su impacto en el macho de Schistosoma mansoni",au:"**de Carvalho Augusto R**, Mello-Silva CC, Gatti MJ, Mafra CL, Portes Santos C",v:"Neotropical Helminthology",vol:"10(1):13–22",doi:"10.24039/rnh2016101724"},
  {y:2015,t:"article",ti:"Schistosoma mansoni: Phytochemical Effect on Aquatic Life Cycle",au:"**de Carvalho Augusto R**, Friani G, de Vasconcellos MC, de Azevedo Rodrigues ML, Mello-Silva CC",v:"Open Journal of Veterinary Medicine",vol:"5(6):127–132",doi:"10.4236/ojvm.2015.56017"},
  {y:2013,t:"article",ti:"A rapid diagnostic test for schistosomiasis mansoni",au:"Mello-Silva CC, Joao RC, **Augusto RC**, Santos CP",v:"Memórias do Instituto Oswaldo Cruz",vol:"108(8):1078–1080",doi:"10.1590/0074-0276130335"},
- {y:2012,t:"article",ti:"A influencia da densidade populacional e a ingestão de alimentos na biologia reprodutiva da Biomphalaria glabrata (mollusca) e da quantidade de cálcio em caramujos experimentalmente infectados com Schistosoma mansoni (trematoda)",au:"**de Carvalho Augusto R**, da Silva Magalhães AC, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"41(1)",doi:"10.5216/rpt.v41i1.17798"},
+ {y:2012,t:"article",ti:"A influencia da densidade populacional e a ingestão de alimentos na biologia reprodutiva da Biomphalaria glabrata (Mollusca) e da quantidade de cálcio em caramujos experimentalmente infectados com Schistosoma mansoni (Trematoda)",au:"**de Carvalho Augusto R**, da Silva Magalhães AC, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"41(1)",doi:"10.5216/rpt.v41i1.17798"},
  {y:2011,t:"article",ti:"Biomphalaria glabrata: exposição a diferentes concentrações de carbonato de cálcio influenciam o crescimento, a maturidade sexual e a formação de pérolas",au:"da Silva Magalhães AC, **Augusto RC**, Mello-Silva CC",v:"Revista de Patologia Tropical",vol:"40(4):341–347",doi:"10.5216/rpt.v40i4.16763"},
  {y:2012,t:"article",ti:"Metabolic changes in Biomphalaria glabrata infected with Schistosoma mansoni exposed to latex of Euphorbia milii solution versus times of preparation",au:"Lima MG, **Augusto RC**, Vasconcellos MC, Mello-Silva CC, Pinheiro J",v:"Journal of Natural Products",vol:"5:222–232"}
 ];
@@ -645,7 +658,7 @@ const PEOPLE=[
  {n:"Célia Koellsch-Amet",r:"PhD candidate",w:"IHPE, UPVD · 2024–2027 · co-supervised with Jérôme Boissier",tp:"Plasmodium yoelii and S. mansoni co-infection, from host pathology to molecules"},
  {n:"Isabela Xavier Dutra",r:"PhD co-supervision",w:"Instituto René Rachou, Fiocruz, Brazil · 2022–2026 · co-supervised with Marina Moraes Mourão and Sandra Gava",tp:"MicroRNAs and resistance to Schistosoma in Biomphalaria and Bulinus snails"},
  {n:"Lorena Oliveira Souza Soares",r:"PhD co-supervision",w:"ENSP, Fiocruz, Brazil · 2024–2028 · co-supervised with Enrico Saggioro and Fábio Veríssimo Correia",tp:"PFOA and microplastics in aquatic and terrestrial organisms, a One Health biomarker approach"},
- {n:"Augusto Magubeia Francisco",r:"PhD co-supervision",w:"Instituto Nacional de Saúde, Mozambique · 2024–2028 · co-supervised with Clélia Mello-Silva and Sonia Enessa",tp:"Epidemiology of schistosomiasis in Murrupula district, Nampula province"}
+ {n:"Augusto Magubeia Francisco",r:"PhD co-supervision",w:"Instituto Nacional de Saúde, Mozambique · 2024–2028 · co-supervised with Clélia Mello-Silva and Sónia Enosse (Malaria Consortium, Mozambique)",tp:"Epidemiology of schistosomiasis in Murrupula district, Nampula province"}
 ];
 /* Master's students. Add img:"img/team/<file>.jpg" for a photo and url:"<lab page>" for the current lab profile. */
 const MSC=[
@@ -673,10 +686,21 @@ const CAREER=[
 ];
 document.getElementById("career").innerHTML=CAREER.map(([d,t])=>`<li>${esc(t)}<small>${d}</small></li>`).join("");
 
+/* slideshows */
+document.querySelectorAll("[data-slides]").forEach(box=>{
+  const track=box.querySelector(".track"),sl=[...box.querySelectorAll(".slide")],dots=box.querySelector(".dots");
+  const cap=box.parentElement.querySelector(".slide-cap");let i=0;
+  sl.forEach((_,k)=>{const b=document.createElement("button");b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-label","Image "+(k+1));b.onclick=()=>go(k);dots.appendChild(b)});
+  function go(k){i=(k+sl.length)%sl.length;track.style.transform=`translateX(${-100*i}%)`;[...dots.children].forEach((d,j)=>d.setAttribute("aria-selected",j===i));if(cap)cap.textContent=sl[i].dataset.cap}
+  box.querySelector(".prev").onclick=()=>go(i-1);box.querySelector(".next").onclick=()=>go(i+1);
+  let x0=null;box.addEventListener("touchstart",e=>x0=e.touches[0].clientX,{passive:true});box.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null});
+  go(0);
+});
+
 /* funders: logo files in img/logos/; entries without a file show the name until the official logo is added */
 const FUNDERS=[
- {n:"CAPES–COFECUB"},{n:"ANR",f:"anr.png"},{n:"CNPq"},{n:"CAPES-PrInt"},{n:"FAPESP",f:"fapesp.png",c:"dk"},{n:"Fiocruz"},
- {n:"France–Brazil Embassy"},{n:"Région Occitanie",f:"occitanie.png",c:"bk"},{n:"ExposUM"},{n:"RIVOC",f:"rivoc.png"},{n:"CEMEB"},{n:"TULIP"},{n:"UPVD",f:"upvd.png"}
+ {n:"CAPES–COFECUB",f:"cofecub.png",c:"tl"},{n:"ANR",f:"anr.png"},{n:"CNPq",f:"cnpq.png"},{n:"CAPES-PrInt",f:"capes-print.png",c:"tl"},{n:"FAPESP",f:"fapesp.png",c:"dk"},{n:"Fiocruz",f:"fiocruz.png"},
+ {n:"Embassy of France in Brazil · France Éducation International",f:"ambassade.png"},{n:"Région Occitanie",f:"occitanie.png",c:"rd"},{n:"Institut ExposUM, Université de Montpellier",f:"exposum.png"},{n:"RIVOC",f:"rivoc.png"},{n:"CeMEB",f:"cemeb.png",c:"tl"},{n:"TULIP",f:"tulip.png"},{n:"UPVD",f:"upvd.png"}
 ];
 document.getElementById("logos").innerHTML=FUNDERS.map(x=>x.f?`<li class="${x.c||""}"><img src="img/logos/${x.f}" alt="${esc(x.n)}" loading="lazy"></li>`:`<li class="txt">${esc(x.n)}</li>`).join("");
 
@@ -702,13 +726,9 @@ const WORLD="M720.2,302.2L720.9,307L721.9,308.9L721.5,310.8L720.8,312L719.4,309.
 const EUR="M570.28,24.86L570.28,25.26L570.18,25.38L570.03,25.46L569.63,25.53L569.28,25.65L568.97,25.85L568.87,26.14L569.1,26.34L569.54,26.46L569.66,26.86L569.28,27.05L568.36,27.25L568.26,27.72L568.29,28.09L568.28,28.37L568.2,28.74L567.46,28.91L566.97,28.34L566.97,28.11L566.81,27.84L566.79,27.62L566.62,27.25L565.9,27.16L565.63,27.14L565.24,27.21L565.15,27.18L564.68,26.68L564.76,26.14L564.52,25.86L564.47,25.73L564.49,25.59L564.29,25.48L564.03,25.42L563.91,25.12L564.2,25.04L564.89,25.07L565.11,25.05L565.3,24.99L565.86,24.48L565.84,24.37L565.9,24.23L566.51,24.17L566.78,24.37L566.74,24.68L566.76,25.08L567.14,25.19L567.28,25.21L567.43,24.91L567.54,24.77L567.69,24.68L567.74,24.41L567.66,24.25L567.47,24.13L568.16,23.79L568.88,23.53L569.3,23.51L569.72,23.57L570.11,23.66L570.32,23.74L570.44,23.87L570.18,24.16L570.11,24.32ZM562.57,25.56L562.75,25.77L562.95,26.21L563.28,26.71L563.14,26.92L563.24,27.18L563.14,27.47L562.5,27.79L561.77,27.8L561.02,27.65L559.95,27.34L559.87,27.18L559.72,27.09L559.43,26.57L559.45,25.93L559.98,25.86L561.15,25.56L561.41,25.6L561.7,25.76L562.03,25.77L562.49,25.55ZM530.99,90L530.98,89.96L530.81,89.83L530.53,89.78L530.3,89.88L530.13,90L529.93,90L529.93,90L529.83,89.88L529.58,89.84L529.48,89.71L529.48,89.55L531.14,88.58L531.61,88.37L532.64,88.12L532.79,88.15L532.66,88.31L532.66,88.37L532.79,88.44L532.77,88.56L532.64,88.65L532.58,88.84L532.58,88.84L532.97,88.97L533.37,88.85L533.59,88.89L533.8,88.95L533.85,89.21L533.66,89.49L533.4,89.78L533.24,90L530.99,90ZM553.64,90L553.67,89.91L553.79,89.75L553.85,89.41L553.8,89.11L553.89,89.01L554.05,89.11L554.16,89.08L554.15,88.92L554.19,88.65L553.98,88.41L553.63,88.33L553.6,88.09L553.63,87.85L553.82,87.69L553.88,87.48L553.89,86.83L553.63,86.59L553.55,86.23L553.42,86L553.19,85.76L552.93,85.58L552.75,85.4L552.72,84.92L552.81,84.51L552.9,84.35L552.98,84.37L553.24,84.57L553.46,84.61L553.88,84.66L554.29,84.6L554.8,84.42L555.29,84.2L555.99,83.56L556.43,83.43L556.66,83.26L556.73,83.03L556.91,82.97L557.13,83.2L557.4,83.22L557.82,83.4L557.99,83.58L558.15,83.79L558.3,83.88L558.46,83.93L558.48,83.98L558.35,84.03L558.21,84.27L558.3,84.34L558.53,84.47L558.53,84.47L558.73,84.73L559.18,85.78L559.22,86L559.13,86.24L559.02,86.4L558.57,86.92L558.64,87.36L558.8,87.63L558.83,87.93L558.74,88.31L558.54,90L553.64,90ZM557.92,76.78L557.82,77.36L557.89,77.54L558.04,77.66L558.11,77.79L558.23,79.36L558.2,79.48L557.71,80.11L557.61,80.29L557.58,81.08L557.49,81.29L557.32,81.49L557.02,82.16L556.74,82.46L556.01,82.09L555.58,81.94L555.37,81.76L555.23,81.65L555.32,81.49L555.52,81.33L555.55,81.2L555.09,81.05L554.87,80.95L554.87,80.79L555.03,80.52L554.96,80.3L554.7,80.31L554.48,80.28L554.47,80.16L554.61,80.01L554.81,79.83L554.8,79.62L554.57,79.53L554.35,79.36L554.27,79.13L554.44,78.97L554.7,78.86L554.51,78.63L554.37,78.62L554.27,78.57L554.35,78.46L554.55,78.29L554.86,77.8L555.26,77.57L555.98,77.42L556.18,77.36L556.35,77.18L556.55,77.07L556.79,77.08L557.02,77.15L557.15,77.22L557.26,77.15L557.35,76.93L557.29,76.74L557.32,76.22L557.45,75.93L557.66,75.91L557.85,76.08L557.84,76.22L557.91,76.56ZM509.11,22L508.9,22.07L507.81,22.21L507.51,22.3L507.15,22.46L506.76,22.55L507.21,22.53L507.65,22.44L508.46,22.41L509.39,22.73L509.31,22.98L508.93,23.19L508.08,23.23L507.29,23.68L506.93,23.82L506.56,23.89L506.08,23.87L505.22,23.75L504.84,23.62L505.19,23.82L505.56,23.93L507.81,24.19L507.94,24.16L508.65,23.89L509.6,23.89L511.41,24.39L511.93,24.77L512.68,25.31L513.08,25.53L513.38,25.72L513.56,26L513.92,26.96L514.3,27.89L514.84,28.91L515.07,29.18L515.38,29.38L516.97,29.84L517.31,29.98L517.93,30.42L518.52,30.89L519.07,31.24L519.66,31.52L519.37,31.68L519.17,31.91L519.33,32.23L519.56,32.54L520.04,33.03L520.47,33.57L520.31,33.48L520.15,33.44L519.92,33.45L519.7,33.43L519.3,33.26L518.91,33.05L518.15,33.14L517.73,33.1L517.36,33.1L518.06,33.22L518.83,33.23L520.51,34.13L521.09,34.66L521.42,35.36L521.19,35.68L520.83,35.88L520.5,36.11L520.18,36.38L521.12,36.77L521.32,36.75L521.53,36.7L521.72,36.57L522.07,36.25L522.24,36.14L522.82,36.09L523.3,36.11L523.79,36.18L524.23,36.16L525.09,36.3L525.52,36.43L526.63,36.98L526.86,37.29L526.98,37.68L526.99,38.12L526.8,38.52L526.59,38.89L526.46,39.35L526.37,39.52L526.24,39.65L525.65,40.02L525.26,40.17L525.1,40.11L524.93,40.11L524.92,40.2L525.09,40.39L525.1,40.62L524.76,40.79L524.4,40.86L523.82,40.77L523,41.08L523.59,41.24L523.71,41.41L523.56,41.71L523.2,41.85L522.79,41.91L522.37,41.92L522.02,42L521.69,42.14L522.11,42.06L522.4,42.13L522.58,42.38L522.74,42.45L523.56,42.56L524.05,42.56L525.03,42.5L525.49,42.5L525.67,42.54L525.67,42.75L525.59,43.27L525.46,43.38L524.18,43.81L523.91,44.11L523.84,44.29L523.09,44.27L522.74,44.45L522.12,44.59L521.66,44.73L521.2,44.9L520.81,44.95L519.19,44.74L518.19,44.76L516.85,44.94L516.51,44.91L516,44.74L515.47,44.62L514.87,44.57L514.33,44.41L514.66,44.72L513.93,45.01L513.6,45.07L513.25,45.06L512.53,45.14L511.87,45.1L511.97,45.31L512.14,45.49L512.02,45.57L511.86,45.59L510.6,45.45L510.42,45.48L510.27,45.6L509.81,45.54L509.37,45.32L508.89,45.18L508.4,45.11L508,45.14L506.38,45.47L506.05,45.81L505.9,46.29L505.66,46.71L505.28,47.04L504.83,47.09L504.4,46.86L503.59,46.61L503.3,46.43L503.22,46.43L503.13,46.49L502.81,46.57L502.48,46.57L501.98,46.63L501.09,46.84L500.73,46.98L499.96,47.36L499.8,47.46L499.53,47.84L499.1,47.91L498.71,47.67L498.26,47.58L497.8,47.67L497.51,47.79L497.38,47.69L497.37,47.48L497.72,47.21L498.64,47.02L499.43,46.5L499.83,46.19L499.98,46.02L500.18,45.91L500.42,45.86L500.55,45.67L501.66,44.89L501.76,44.72L501.82,44.4L501.91,44.09L502.81,43.89L503.25,43.25L503.36,43.2L504.63,43.08L505.56,43.09L506.5,43.21L506.98,43.23L507.45,43.18L507.82,43L508.47,42.38L508.83,42.1L509.25,41.85L509.64,41.57L510.27,41.04L509.84,41.22L509.32,41.51L509.03,41.68L508.08,41.84L507.68,42.02L506.96,42.41L506.83,42.44L505.75,42.34L504.94,41.84L504.44,41.64L504.22,41.61L504.01,41.67L503.53,41.73L503.06,41.73L503.3,41.49L503.63,41.36L502.9,41.27L502.68,41.2L502.45,41.04L501.88,41.01L501.6,41.05L501.13,41.27L500.39,41.5L499.5,41.18L499.33,41.04L499.33,40.77L499.2,40.55L498.95,40.48L499.27,40.2L499.65,40.02L500.48,39.83L501.76,39.4L502.47,39.21L503.13,38.89L503.4,38.7L503.61,38.43L503.79,38.1L504.08,37.83L503.81,37.77L503.68,37.57L503.72,37.36L503.84,37.18L503.74,36.96L503.53,36.72L503.55,36.54L503.59,36.34L503.09,36.35L502.57,36.41L502.11,36.55L501.66,36.74L501.27,36.77L501.27,36.62L501.45,36.43L501.89,36.17L502.38,35.95L502.55,35.77L502.68,35.58L502.93,35.42L503.56,35.12L504.76,34.79L504.94,34.77L505.42,34.81L505.88,34.76L506.28,34.64L506.7,34.61L507.61,34.96L507.34,34.42L507.74,34.3L508.33,34.78L508.54,34.83L509.01,34.76L508.82,34.68L508.62,34.67L508.34,34.6L508.13,34.44L507.74,33.95L507.77,33.66L508.01,33.35L508.3,33.07L508.07,33.01L507.87,32.91L507.82,32.62L507.9,32.38L508.4,32.16L508.54,31.82L508.62,31.46L508.53,31.29L508.03,31.32L507.78,31.39L507.57,31.5L507.34,31.49L506.72,31.08L506.36,30.77L505.72,30.13L505.64,29.74L506.14,28.91L506.93,28.37L507.85,28.18L507.68,28.15L506.27,28.14L505.79,28.21L505.36,28.43L505.12,28.5L504.87,28.52L504.63,28.63L504.41,28.78L504.17,28.88L503.69,28.85L503.46,28.89L503.3,28.8L503.17,28.65L502.99,28.62L502.78,28.66L502.37,28.85L501.94,28.97L501.42,28.84L500.73,28.62L500.6,28.7L500.44,28.91L500.35,29.24L499.88,28.96L499.46,28.57L499.31,28.33L499.31,28.06L499.53,27.95L499.77,28.05L500.14,27.4L500.86,26.56L501.11,26.32L501.29,26L501.26,25.78L501.1,25.61L500.44,25.21L500.44,24.87L500.51,24.5L500.7,24.28L500.77,24.24L501.66,24.25L501.32,24.13L500.62,23.8L500.64,23.68L500.8,23.37L500.73,23.4L500.58,23.54L500.29,23.89L500.12,23.97L499.63,24.05L499.54,24.22L499.46,24.27L499.21,24.28L499.14,24.44L499.08,24.46L499.01,24.28L499.01,24L499.11,23.73L499.3,23.53L500.01,23.07L499.66,23.21L498.87,23.64L498.46,23.92L498.36,24.02L498.32,24.1L498.32,24.19L498.51,24.69L498.45,24.92L497.77,26.44L497.64,26.59L497.53,26.67L497.41,26.69L497.08,26.66L496.92,26.55L496.92,26.42L497,26.23L497.27,25.5L497.4,25.3L497.59,25.12L497.97,24.79L497.97,24.77L497.7,24.83L497.59,24.81L497.51,24.75L497.56,23.78L497.77,23.46L497.86,23L498.05,22.6L498.26,22.31L498.41,22L509.11,22ZM490,27.85L490.08,27.81L490.07,27.64L490,27.43L490,26.97L490,26.97L490.17,26.87L490.79,26.8L490.53,26.56L490.76,26.54L491.02,26.59L491.38,26.78L491.75,26.93L492.16,27.05L491.77,27.29L491.31,27.45L491.12,27.63L491.28,27.78L491.28,27.78L491.6,27.81L491.88,27.68L492.21,27.27L492.45,27.25L492.7,27.28L493.21,27.23L494.1,27.04L494.5,27.03L495.07,27.13L495.48,27.13L495.86,27.42L496.06,27.88L496.52,28.34L497.14,28.73L497.15,28.97L496.94,29.1L496.48,29.26L496.49,29.43L496.78,29.34L497.04,29.31L497.67,29.34L497.89,29.52L498.03,29.78L498.12,30L498.06,30.23L497.9,30.16L497.73,29.95L497.54,29.85L497.31,29.8L497.41,30.09L497.37,30.48L497.47,30.51L497.77,30.52L497.57,30.91L497.17,31.02L496.69,31.06L496.58,31.2L496.49,31.38L496.25,31.64L495.93,31.8L495.53,31.77L495.12,31.64L495.3,31.79L495.37,31.93L495.08,31.98L494.76,31.96L494.62,32.05L494.61,32.23L494.72,32.47L494.92,32.64L495.08,33.02L495.22,33.43L495.43,33.69L495.47,34L495.44,34.16L495.48,34.43L495.4,34.53L495.45,34.8L495.71,35.34L495.81,35.64L495.89,36.29L495.71,36.54L495.48,36.77L495.33,37.05L495.21,37.34L495.14,37.83L494.62,38.39L494.4,38.53L494.14,38.62L494.71,39.01L494.25,39.19L493.76,39.25L493.21,39.15L492.88,39.16L492.56,39.29L492.45,39.36L492.34,39.32L492.14,39L491.98,39.34L491.67,39.44L491.13,39.42L490.24,39.51L490,39.58L490,27.85ZM575,68.07L574.97,68.04L574.51,67.56L574.45,67.35L574.41,67.07L574.07,66.07L574.31,65.93L574.55,65.86L574.89,65.65L575,65.57L575,68.07ZM575,65.37L574.51,64.92L574.24,64.92L573.86,65.16L572.83,64.91L572.63,65.02L572.48,65.21L572.12,65.45L571.62,65.56L571.04,65.82L570.45,66.01L569.99,66.15L569.73,66.13L570.15,65.82L569.96,65.81L569.41,66.03L569.1,66.22L569,66.52L568.9,67.04L569.14,67.17L569.57,67.84L570.09,68.13L569.99,68.4L569.86,68.62L569.54,68.81L569.27,68.67L569.11,68.67L569,69.11L569.23,70.28L569.59,71.11L569.95,71.46L570.77,72.02L571.63,72.31L573.19,73.26L574.04,73.55L574.25,73.72L574.77,74.44L575,74.87L575,83.12L575,83.12L574.93,83.06L574.68,82.98L574.22,83.07L573.45,82.88L572.99,82.84L572.74,82.89L572.35,83.02L572.16,82.94L572.09,82.8L571.4,82.36L570.52,82.12L568.82,80.75L568.31,80.24L567.23,79.67L566.55,78.85L565.99,78.55L565.18,78.31L564.99,78.33L564.75,78.42L564.56,78.44L564.42,78.33L564.56,78.22L564.73,78.17L564.68,77.86L563.75,77.04L563.21,76.79L563.06,76.62L562.95,76.4L562.83,76.26L562.57,76.17L562.36,76.19L562.06,76.13L562.07,75.74L562.13,75.44L562.08,75.18L561.8,74.52L561.28,73.95L560.99,72.59L560.75,72.21L560.18,71.92L558.92,71.6L557.16,70.72L556.79,70.71L555.72,70.37L555.06,70.31L554.21,70.61L553.17,71.45L552.32,72.32L552.02,72.49L550.94,72.79L549.97,72.93L549.05,73.22L548.72,73.36L547.45,74.24L546.86,74.51L546.75,74.66L546.63,74.95L546.29,75.2L545.97,75.32L545.22,75.45L544.46,75.71L544.13,75.6L543.23,75.61L542.69,75.29L541.62,75.08L541.28,74.62L540.8,74.59L540.48,74.61L540.3,74.54L540.24,74.38L540.24,74.22L539.91,74.29L539.65,74.29L539.49,74.36L539.38,74.42L539.23,74.38L539.14,74.4L539.16,74.49L538.84,74.51L538.51,74.45L537.63,74.21L537.5,74.17L536.9,74.08L536.65,73.99L536.45,73.74L536.29,73.67L536.21,73.63L535.65,73.74L535.44,73.93L535.14,74.15L533.04,75.23L532.65,75.67L532.2,76.34L532.18,76.65L532.36,77.63L532.79,78.15L532.85,78.28L532.95,78.53L533.15,78.63L533.23,78.84L532.88,78.96L532.66,78.97L532.61,79.35L532.69,79.46L532.9,79.56L532.95,79.67L533,80.22L532.59,80.56L532.02,80.93L529.24,82.13L528.58,82.72L528.33,82.85L526.27,83.22L524.82,83.61L524.13,83.75L523.26,84.43L522.86,84.71L523.19,84.79L523.56,85.11L523.43,85.26L522.89,85.48L522.64,85.55L522.51,85.51L522.38,85.54L521.46,86.72L520.63,87.58L520.17,87.94L519.7,88.49L518.7,89.92L518.69,90L490,90L490,73.05L490.4,73.22L490.95,73.62L491.75,73.79L492.4,73.65L493.53,73.63L494.1,73.68L495.11,73.58L495.69,73.62L496.61,73.42L497.34,73.67L498.74,73.79L499.57,73.99L501.91,74.33L502.76,74.34L503.94,74.15L504.44,74L504.9,74.09L505.58,73.92L505.91,73.95L506.33,74.2L507.82,74.52L508.21,74.24L508.5,74.18L509.57,74.35L510.65,74.69L511.21,74.71L512.03,74.62L512.69,74.4L512.82,74.37L513.47,74.25L514.06,73.74L514.62,71.92L515.02,69.76L515.31,69.36L515.69,69.24L515.38,68.95L515.2,69.09L515.13,69.25L515.02,69.33L515.24,67.36L515.4,66.63L515.67,65.87L516.23,66.17L516.7,66.47L516.94,66.74L517.24,67.63L517.46,67.81L517.8,67.99L517.67,67.79L517.43,67.64L517.07,66.46L516.84,66.13L516.48,65.85L515.33,65.26L515.21,65.14L515.15,64.92L515.54,64.93L515.87,65.04L515.83,64.91L515.73,64.78L515.59,64.3L515.46,63.18L515.47,62.99L515.41,62.75L515.04,62.7L514.75,62.69L514.43,62.6L512.85,61.94L512.32,61.26L511.76,60.76L511.63,60.54L511.64,60.31L511.93,59.85L511.67,59.55L511.42,59.5L511.21,59.35L511.41,59.11L511.57,58.95L511.89,58.91L512.32,58.96L512.72,59.1L513.02,59.13L512.1,58.76L510.59,58.88L510.26,58.84L509.98,58.75L509.88,58.47L510.1,58.35L510.29,58.11L510.07,57.95L509.78,57.89L509.34,57.9L508.92,57.95L508.82,57.85L509.06,57.59L508.85,57.5L508.56,57.54L508.14,57.59L507.74,57.52L507.36,57.22L507.12,57.22L506.95,57.26L506.69,57.15L506.41,57.12L506.23,57.16L505.97,56.99L504.4,56.65L503.72,56.61L503.1,56.76L502.76,56.71L502.5,56.49L502.3,56.13L501.29,55.84L501.49,55.66L501.95,55.61L502.48,55.48L502.68,55.32L502.27,55.13L501.95,55.08L501.82,55.01L501.69,54.84L501.88,54.76L502.01,54.8L502.38,54.83L503.03,54.79L502.8,54.61L502.54,54.57L502.42,54.53L501.91,54.51L501.66,54.57L501.13,54.54L501,54.36L500.96,54.2L501.11,53.84L501.88,53.52L503.76,53.17L504.57,53.22L505.15,53.16L505.82,52.94L506.11,52.75L507.08,52.63L507.98,52.84L508.83,53.59L509.24,53.85L510.22,53.41L511.68,53.42L511.99,53.67L512.1,53.46L512.38,53.21L512.59,53.32L512.71,53.47L514.25,53.43L514.49,53.39L514.07,53.21L513.74,52.78L513.67,51.19L513.24,50.75L512.75,50.04L512.52,49.62L512.5,49.48L512.58,49.27L513.18,49.27L513.64,49.33L514.54,49.17L514.97,49.28L514.94,49.61L515.07,50.02L515.23,50.22L515.44,50.45L516.16,50.43L516.94,50.56L517.92,50.58L519.34,50.82L519.95,50.68L520.54,50.39L521.66,50.2L521.76,50.11L521.12,50.15L520.51,49.97L520.44,49.77L520.51,49.59L520.74,49.19L522.47,48.55L523.69,48.36L524.98,48.01L525.62,47.65L526.06,47.18L526.2,47.08L526.37,46.99L526.2,46.82L526.31,45.04L526.44,44.73L526.69,44.46L527.08,44.26L527.65,44.04L529.78,43.73L530.1,43.61L531.84,42.94L532.9,42.59L533.4,42.49L533.7,42.43L534.36,42.4L534.87,42.52L535.53,42.58L536.05,42.41L536.45,42.56L536.9,42.45L536.55,42.39L536.02,42.23L535.29,42.36L534.77,42.2L534.35,42.18L534.08,42.05L533.8,41.84L534,41.69L534.19,41.64L534.97,41.61L535.54,41.7L536.57,42.18L536.83,42.17L537.1,42.11L536.96,41.98L536.7,41.92L536.32,41.8L536.02,41.61L536.73,41.56L536.62,41.47L536.54,41.31L535.79,40.76L535.92,40.61L536.11,40.29L536.34,40.02L536.52,39.95L536.84,39.77L537.5,39.21L537.94,38.76L538.25,38.23L538.71,36.76L538.86,36.51L539.07,36.23L539.36,36.29L539.55,36.36L540.24,36.16L541.43,35.61L541.78,35.14L542.13,34.93L543.49,34.5L544.24,34.37L545.41,34.34L546.26,34.26L547.27,34.23L547.66,34.5L547.87,34.69L548.23,34.8L548.79,34.87L548.61,34.69L548.22,34.5L548.3,34.09L548.43,33.77L548.82,33.38L549.14,33.27L550.52,33.21L552.03,33.24L552.67,33.82L552.44,34.13L552.8,34.27L552.98,34.22L553.11,33.96L553.2,33.66L553.33,33.57L553.8,33.8L553.98,33.94L553.98,34.42L554.15,33.77L554.02,33.32L554.11,32.88L554.31,32.64L554.48,32.5L555.59,32.66L556.83,32.57L557.29,32.75L558.34,33.6L558.69,33.74L559.13,33.78L558.53,33.6L557.25,32.57L556.87,32.43L556.28,32.4L555.91,32.3L555.68,32.14L555.62,32L555.63,30.96L555.4,30.8L555.11,30.75L554.94,30.82L554.58,30.82L554.51,30.59L554.6,30.41L555.33,30.29L555.81,30.13L555.83,29.84L555.52,29.62L555.16,29.22L554.73,28.83L554.64,28.05L554.55,27.82L554.29,27.46L554.68,27.38L554.61,26.68L554.47,26.32L553.39,25.96L552.52,25.6L552.72,24.39L552.81,24.07L552.48,23.44L552.52,22.71L552.6,22L554.62,22L554.62,22L554.68,22.02L554.7,22L563.49,22L563.49,22L563.52,22.03L563.71,22.23L563.58,22.57L563.42,22.82L563.02,23.03L562.49,23.19L562.16,23.2L561.71,22.89L561.49,22.99L561.28,23.15L560.9,23.98L560.73,24.54L560.64,24.59L560.43,24.5L560.07,24.5L559.62,24.63L559.85,24.75L560.1,24.96L560,25.06L559.59,25.17L559.25,25.39L559.09,25.57L558.64,25.77L558.37,26.03L558.5,26.34L558.56,26.62L558.69,26.93L558.57,27.18L558.02,27.53L557.82,27.84L558.28,27.84L558.59,27.91L558.76,28L558.93,28.13L558.82,28.29L558.99,28.77L559.56,28.88L559.81,29.05L560.08,29.3L560.11,29.68L559.77,29.94L559.48,30.11L560.57,30.05L560.69,30.2L560.85,30.37L561.44,30.25L562.92,30.73L563.83,30.5L564.06,30.48L564.26,30.88L564.03,31.27L563.24,31.7L563.42,31.96L563.67,32.02L564.42,31.96L565.6,32.22L565.84,32.14L566.81,31.55L567.18,31.42L568.45,31.32L568.68,31.09L569.18,30.87L569.51,30.62L570.31,30.13L571.11,30.22L571.59,30.31L572.12,30.36L572.6,30.87L573.79,31.43L574.9,31.39L575,31.52L575,65.37ZM575,26.33L573.29,26.62L571.55,26.35L571.76,26.07L571.76,25.87L571.85,25.55L571.91,25.23L571.89,25L571.76,24.78L571.34,24.47L570.36,23.45L570.09,23.02L569.89,22.84L570.03,22.83L570.83,23.06L571.01,23.03L571.2,22.94L570.97,22.62L570.77,22.46L570.62,22.24L571.1,22.18L571.43,22.19L571.61,22L575,22ZM545.34,33.96L544.78,34.09L544.63,34.07L544.67,34.02L545.16,33.94ZM543.72,34.16L542.93,34.23L542.66,34.18L542.62,34.14L542.83,34.11L543.51,34.1L543.71,34.14ZM540.44,34.77L539.69,35.06L539.63,35.02L540.11,34.76ZM541.31,34.46L540.93,34.49L540.76,34.43L541.67,34.27L542.23,34.23L542.33,34.25ZM509.96,50.02L509.81,50.29L509.44,50.2L509.41,50.13L509.83,49.98L509.91,49.98ZM511.93,51.07L511.96,51.27L511.78,51.32L511.64,51.25L511.34,51.25L511.05,51.29L511.12,50.93L511.67,50.98ZM502.35,31.26L501.55,31.77L501.22,31.68L500.94,31.72L500.86,31.71L501.01,31.52L501.2,31.1L501.55,30.93L501.96,30.49L502.3,30.37L502.42,30.39L502.5,30.43L502.66,30.92L502.42,31.1ZM499.57,26.21L499.07,26.21L498.9,26.17L498.68,26.07L498.44,25.53L498.52,25.33L498.62,25.24L498.72,25.16L499,25.13L499.26,25.23L499.36,25.33L499.57,25.71L499.62,26.03ZM496.86,22L496.95,22.04L496.89,22.62L496.89,22.62L495.3,22.84L494.75,22.82L494.69,22.71L494.81,22.64L495.25,22.57L495.44,22.04L495.33,22L496.86,22ZM495.48,24.28L495.63,24.79L495.77,25.11L495.77,25.22L495.64,25.37L494.99,25.57L494.78,25.57L494.78,25.53L494.92,25.32L494.79,25.09L494.85,24.91L494.79,24.88L494.66,24.9L494.19,25.18L494.03,25.21L494.01,25.16L494.13,24.92L494.14,24.77L494.22,24.67L494.35,24.58L494.5,24.51L494.62,24.5L494.75,24.57L495.14,24.38ZM496.12,24.74L496.03,24.78L495.83,24.78L495.76,24.71L495.71,24.61L495.71,24.43L495.83,24.3L496.35,24.1L496.12,24.03L496.1,23.98L496.25,23.82L496.81,23.57L496.95,23.52L497.1,23.53L496.81,23.98ZM503.22,34.71L503.38,34.79L503.81,34.77L503.66,34.94L503.2,35.13L502.89,35.31L502.51,35.46L502.32,35.29L502.11,35.3L501.79,34.96L501.73,34.46L502.15,34.32L502.74,34.33ZM574.84,30.47L574.94,30.74L574.83,30.87L574.38,30.65L573.92,30.65L573.66,31L573.46,31.02L572.75,30.7L572.65,30.54L572.63,30.41L572.73,29.96L572.71,29.82L572.93,29.67L572.96,29.45L573.35,29.21L573.69,29.21L573.81,29.4L573.96,29.54L574.54,29.69L574.63,29.76L574.68,29.86L574.41,30.05L574.32,30.14L574.41,30.3ZM570.19,28.14L570.05,28.2L569.43,28.15L568.74,28.43L568.48,28.34L568.58,28.16L568.65,28.1L568.88,28.03L569.04,27.91L569.1,27.74L569.24,27.84L569.67,27.87L569.87,27.93L570.05,28.01ZM570.67,25.62L570.29,25.78L570.21,25.78L570.08,25.54L570.28,25.4L570.39,25.28L570.48,25.28L570.59,25.41ZM565.44,28.43L566.16,28.68L566.63,28.67L566.95,28.77L567.04,28.93L567.07,29.28L566.72,29.39L566.35,29.35L565.83,29.48L564.14,28.91L564.17,28.43L564.23,28.24L565.04,28.19ZM561.94,28.61L561.67,28.65L561.36,28.57L560.86,28.23L560.8,28.15L561.06,28.21L561.39,28.38L561.65,28.41L562.01,28.56ZM560.24,28.46L559.82,28.51L559.62,28.41L559.22,28.38L559.09,27.76L559.12,27.73L559.32,27.77L560,28.05L560.23,28.37ZM562.93,29L562.76,29.02L562.52,28.7L562.49,28.59L562.78,28.39L562.95,28.15L563.42,27.79L563.7,27.37L563.8,27.37L563.68,27.75L563.06,28.8ZM562.43,24.87L562.36,24.94L562.11,24.87L562.08,24.61L562.17,24.37L562.07,24.16L562.19,24.03L562.55,24.34L562.65,24.49L562.52,24.66ZM565.14,30.33L564.52,30.34L564.29,30.18L564.04,30.14L564.17,29.93L564.35,29.87L564.94,30L565.12,30.25ZM553.23,28.85L553.14,28.93L553.19,28.37L553.62,27.77L553.8,27.78L553.62,27.94L553.56,28.05L553.49,28.28L553.52,28.4L554.52,28.43L554.41,28.54L553.39,28.61ZM515.28,64.38L515.14,64.73L514.88,64.41L514.52,64.13L514.45,63.87L514.45,63.8L514.87,63.99ZM515.74,45.24L515.4,45.38L515.3,45.54L515.21,45.6L515,45.64L514.78,45.65L513.94,45.32L513.74,45.34L513.93,45.18L514.46,45.07L514.75,44.91L515.43,45.06ZM539.55,35.72L539.14,36L538.9,35.92L538.84,35.86L538.96,35.64L539.55,35.27ZM561.58,76.57L561.71,76.72L561.72,76.81L561.64,76.92L561.68,77.15L561.34,76.95L560.83,77.05L560.53,77.03L560.44,76.86L560.51,76.76L560.99,76.74L561.15,76.69L561.44,76.71ZM553.14,83.84L553.01,84.02L552.83,84.01L552.9,83.88L553.07,83.6L553.29,83.51L553.37,83.59L553.27,83.75ZM537.17,88.63L537.1,88.68L535.88,88.22L535.47,88.17L535.37,88.1L535.39,87.85L535.42,87.75L536.24,87.7L536.9,87.87L537.26,88.33L537.29,88.41ZM535.79,41.05L536.19,41.26L536.26,41.33L536.29,41.41L535.8,41.49L535.27,41.23L534.93,41.29L534.8,41.16L534.8,41.08L535.16,41.02ZM554.35,29.15L554.19,29.25L553.82,29.23L553.6,29.14L553.67,29.05L553.88,28.97L554.03,28.96L554.29,29ZM546.94,33.67L546.58,33.68L546.68,33.58L547.02,33.5L547.21,33.5Z";
 const svg=document.getElementById("map");
 let s="";
-const yT=P(0,23.44)[1],yC=P(0,-23.44)[1];
 s+=`<path d="${WORLD}" fill="#26302F" stroke="#334140" stroke-width=".5"/>`;
-s+=`<rect x="0" y="${yT}" width="760" height="${yC-yT}" fill="var(--glow)" fill-opacity=".06"/>`;
 for(let lon=-120;lon<=60;lon+=20){const x=P(lon,0)[0];s+=`<line x1="${x}" y1="0" x2="${x}" y2="400" stroke="var(--night-line)" stroke-width=".7" stroke-dasharray="1 4"/>`}
 for(let lat=60;lat>=-20;lat-=20){const y=P(0,lat)[1];s+=`<line x1="0" y1="${y}" x2="760" y2="${y}" stroke="var(--night-line)" stroke-width=".7" stroke-dasharray="1 4"/><text x="4" y="${y-3}" font-size="8" fill="var(--night-muted)" font-family="JetBrains Mono,monospace">${Math.abs(lat)}°${lat>0?"N":lat<0?"S":""}</text>`}
-s+=`<line x1="0" y1="${yT}" x2="760" y2="${yT}" stroke="var(--glow)" stroke-opacity=".35"/><line x1="0" y1="${yC}" x2="760" y2="${yC}" stroke="var(--glow)" stroke-opacity=".35"/>`;
-s+=`<text x="756" y="${yT-4}" text-anchor="end" font-size="8.5" fill="var(--glow)" font-family="JetBrains Mono,monospace">TROPIC OF CANCER</text><text x="756" y="${yC+11}" text-anchor="end" font-size="8.5" fill="var(--glow)" font-family="JetBrains Mono,monospace">TROPIC OF CAPRICORN</text>`;
 const lab=(t,lon,lat)=>{const[x,y]=P(lon,lat);return `<text x="${x}" y="${y}" font-size="10" letter-spacing="2" fill="var(--night-muted)" fill-opacity=".6" font-family="JetBrains Mono,monospace">${t}</text>`};
 s+=lab("N. AMERICA",-118,56)+lab("S. AMERICA",-72,-8)+lab("EUROPE",16,60)+lab("AFRICA",14,18);
 const H=P(...SITES[0].ll);
