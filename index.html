@@ -418,8 +418,11 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
         <ul class="msc" id="msc-alumni"></ul>
       </div>
       <div>
-        <h3>Career</h3>
-        <ul class="plain" id="career"></ul>
+        <h3>Visiting students and researchers</h3>
+        <p class="grp">PhD students</p>
+        <ul class="plain" id="vis-phd"></ul>
+        <p class="grp">Researchers</p>
+        <ul class="plain" id="vis-res"></ul>
       </div>
     </div>
   </div>
@@ -690,15 +693,19 @@ document.getElementById("people").innerHTML=PEOPLE.map(p=>`<article class="perso
 const mscLi=p=>`<li>${av(p)}<div><b>${esc(p.n)}</b><small>${esc(p.w)}${p.tp?" · "+ital(p.tp):""}${lk(p)?" · "+lk(p):""}</small></div></li>`;
 document.getElementById("msc-now").innerHTML=MSC.filter(p=>p.now).map(mscLi).join("");
 document.getElementById("msc-alumni").innerHTML=MSC.filter(p=>!p.now).map(mscLi).join("");
-const CAREER=[
- ["2022–","Junior Professor Chair, IHPE, Université de Perpignan Via Domitia"],
- ["2022","Postdoc, School of Medicine, University of Utah, USA"],
- ["2019–2021","Postdoc, LBMC, ENS de Lyon"],
- ["2016–2019","Postdoc, Université de Perpignan Via Domitia (Wellcome Trust)"],
- ["2016","PhD in Parasitology, Fiocruz, Brazil"],
- ["2012","MSc in Veterinary Parasitology, UFRRJ, Brazil"]
+const VIS_PHD=[
+ ["Lorena Oliveira Souza Soares","ENSP, Fiocruz, Brazil · November 2024 – May 2025"],
+ ["Julia Araujo Alves","ENSP, Fiocruz, Brazil · September 2024 – January 2025"],
+ ["Isabela Thamara Xavier Dutra","Instituto René Rachou, Fiocruz, Brazil · 2024 and 2025"],
+ ["Vanessa Valladares","IOC, Fiocruz, Brazil · December 2023"]
 ];
-document.getElementById("career").innerHTML=CAREER.map(([d,t])=>`<li>${esc(t)}<small>${d}</small></li>`).join("");
+const VIS_RES=[
+ ["Lângia Coli Montresor","Instituto René Rachou, Fiocruz, Brazil · 3-month research stay, 2026"],
+ ["Marina Moraes Mourão","Instituto René Rachou, Fiocruz, Brazil · 3-month research stay, 2024"]
+];
+const visLi=([n,d])=>`<li>${esc(n)}<small>${esc(d)}</small></li>`;
+document.getElementById("vis-phd").innerHTML=VIS_PHD.map(visLi).join("");
+document.getElementById("vis-res").innerHTML=VIS_RES.map(visLi).join("");
 
 /* hero background video: skipped on small screens, data saver and reduced motion */
 (()=>{const v=document.getElementById("herovid");if(!v)return;
