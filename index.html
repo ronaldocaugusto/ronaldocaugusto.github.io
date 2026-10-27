@@ -124,12 +124,12 @@ section{padding-block:clamp(60px,8vw,110px)}
 .dark{background:var(--night);color:var(--night-ink)}
 .dark .lead{color:var(--night-muted)}
 .dark .eyebrow{color:var(--glow)}
-.pi{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--night-line)}
+.pi{display:grid;grid-template-columns:132px minmax(0,1fr);gap:clamp(16px,2.5vw,28px);align-items:center;padding:18px 0;border-top:1px solid var(--night-line);border-bottom:1px solid var(--night-line)}
 .pi img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:var(--r);filter:grayscale(1)}
-.pi h3{font-size:1.5rem;margin:.2em 0 .4em}
+.pi h3{font-size:1.3rem;margin:.2em 0 .35em}
 .pi p{color:var(--night-muted);max-width:62ch;margin:0}
 .pi .role{color:var(--glow)}
-@media (max-width:560px){.pi{grid-template-columns:120px minmax(0,1fr)}.pi p{font-size:.92rem}}
+@media (max-width:560px){.pi{grid-template-columns:92px minmax(0,1fr);align-items:start}.pi p{font-size:.9rem}}
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .person{background:var(--night-2);border:1px solid var(--night-line);border-radius:var(--r);padding:22px;display:grid;gap:6px;align-content:start}
 .person .role{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--glow)}
@@ -259,8 +259,15 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
     <div class="hero-text">
       <p class="eyebrow">Parasite virulence · Epigenetics · One Health</p>
       <h1>Our group studies why parasites become more or less harmful, and how the environment tips the balance.</h1>
-      <p class="role">Led by Ronaldo de Carvalho Augusto · Junior Professor Chair<br>IHPE UMR 5244 · Université de Perpignan Via Domitia, France</p>
-      <p class="intro2">The team follows the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. It combines experimental infections, epigenomics and functional genomics with field work in Brazil and Mozambique to predict where schistosomiasis may emerge next, including in southern Europe. The group was established with support from the French National Research Agency (<span style="white-space:nowrap">ANR-22-CPJ1-0056-01</span>).</p>
+      <div class="pi">
+        <img src="img/portrait.jpg" width="1000" height="1500" alt="Portrait of Ronaldo de Carvalho Augusto, black and white">
+        <div>
+          <span class="role">Group leader</span>
+          <h3>Ronaldo de Carvalho Augusto</h3>
+          <p>Junior Professor Chair at IHPE (UMR 5244), Université de Perpignan Via Domitia. Biologist from Rio de Janeiro, trained at Fiocruz, with postdoctoral work at IHPE, ENS de Lyon and the University of Utah.</p>
+        </div>
+      </div>
+      <p class="intro2">My team follows the human blood fluke <em>Schistosoma mansoni</em> through its whole life cycle, in snails, in fresh water and in mammals, to learn how temperature, pollutants and co-infecting pathogens reshape its development, virulence and transmission. It combines experimental infections, epigenomics and functional genomics with field work in Brazil and Mozambique to predict where schistosomiasis may emerge next, including in southern Europe. The group was established with support from the French National Research Agency (<span style="white-space:nowrap">ANR-22-CPJ1-0056-01</span>).</p>
       <div class="links" aria-label="Research profiles">
         <a href="https://orcid.org/0000-0003-1147-0043">ORCID</a>
         <a href="https://scholar.google.com/citations?user=uB1Vt0IAAAAJ">Google Scholar</a>
@@ -400,14 +407,6 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
       <p class="eyebrow">Team</p>
       <h2>People</h2>
       <p class="lead">A team built across France, Brazil and Mozambique, connecting Portuguese-speaking endemic countries with IHPE, a WHO-recognized centre for schistosomiasis research.</p>
-    </div>
-    <div class="pi">
-      <img src="img/portrait.jpg" width="1000" height="1500" loading="lazy" alt="Portrait of Ronaldo de Carvalho Augusto, black and white">
-      <div>
-        <span class="role">Group leader</span>
-        <h3>Ronaldo de Carvalho Augusto</h3>
-        <p>Junior Professor Chair at IHPE (UMR 5244), Université de Perpignan Via Domitia. Biologist from Rio de Janeiro, trained at Fiocruz, with postdoctoral work at IHPE, ENS de Lyon and the University of Utah.</p>
-      </div>
     </div>
     <div class="people" id="people"></div>
     <div class="team-foot">
