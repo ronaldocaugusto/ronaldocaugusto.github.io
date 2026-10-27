@@ -102,8 +102,8 @@ section{padding-block:clamp(60px,8vw,110px)}
 .slides.light{background:#fff}
 .slides .track{display:flex;height:100%;transition:transform .45s ease}
 .slides .slide{flex:0 0 100%;margin:0;height:100%;display:grid;place-items:center}
-.slides .slide{min-width:0;overflow:hidden}
-.slides .slide img{width:100%;height:100%;object-fit:contain}
+.slides .slide{min-width:0;overflow:hidden;position:relative}
+.slides .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .slides .nav-b{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(14,14,14,.72);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;display:grid;place-items:center}
 .slides .prev{left:10px}.slides .next{right:10px}
 .slides .dots{position:absolute;bottom:10px;left:0;right:0;display:flex;gap:6px;justify-content:center}
@@ -149,8 +149,11 @@ section{padding-block:clamp(60px,8vw,110px)}
 .card p{color:var(--muted);font-size:.95rem}
 .card.feature{grid-column:span 2;background:var(--soft);border-color:transparent}
 .card.feature h3{font-size:1.4rem}
+.card .clist{margin:0;padding-left:1.1em;color:var(--muted);font-size:.95rem}
+.card .clist li{margin:.35em 0;line-height:1.45}
+.card.wide{grid-column:span 2}
 @media (max-width:960px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.cards{grid-template-columns:1fr}.card.feature{grid-column:auto}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}.card.feature,.card.wide{grid-column:auto}}
 .courses{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
 .courses li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .courses li span:last-child{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);text-align:right}
@@ -311,7 +314,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
       <figure class="fig">
         <div class="slides dark" data-slides>
           <div class="track">
-            <figure class="slide" data-cap="Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM)."><img src="img/media/teg-1.jpg" width="1200" height="855" loading="lazy" alt="Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM)."></figure>
+            <figure class="slide" data-cap="Adult worm and its anterior region, including the oral and ventral suckers, imaged by scanning electron microscopy (SEM)."><img src="img/media/teg-1.jpg" width="1200" height="1281" loading="lazy" alt="Adult worm and its anterior region, including the oral and ventral suckers, imaged by scanning electron microscopy (SEM)."></figure>
             <figure class="slide" data-cap="Tegument surface by SEM (A–C) and confocal laser scanning microscopy (D–F)."><img src="img/media/teg-2.jpg" width="1200" height="1352" loading="lazy" alt="Tegument surface by SEM (A–C) and confocal laser scanning microscopy (D–F)."></figure>
             <figure class="slide" data-cap="Tegumental tubercles by confocal microscopy and transmission electron microscopy (TEM)."><img src="img/media/teg-3.jpg" width="1200" height="929" loading="lazy" alt="Tegumental tubercles by confocal microscopy and transmission electron microscopy (TEM)."></figure>
             <figure class="slide" data-cap="Tegumental spines by SEM (A, B) and TEM (C, D)."><img src="img/media/teg-4.jpg" width="1200" height="981" loading="lazy" alt="Tegumental spines by SEM (A, B) and TEM (C, D)."></figure>
@@ -319,7 +322,7 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
           <button type="button" class="nav-b prev" aria-label="Previous image">‹</button><button type="button" class="nav-b next" aria-label="Next image">›</button>
           <div class="dots" role="tablist"></div>
         </div>
-        <figcaption><span class="slide-cap">Whole adult worms and the anterior region imaged by scanning electron microscopy (SEM).</span><span class="cr">de Carvalho Augusto et al. 2026, <i>Micron</i> 208:104119 · <a href="https://doi.org/10.1016/j.micron.2026.104119">doi:10.1016/j.micron.2026.104119</a> · CC BY-NC 4.0</span></figcaption>
+        <figcaption><span class="slide-cap">Adult worm and its anterior region, including the oral and ventral suckers, imaged by scanning electron microscopy (SEM).</span><span class="cr">de Carvalho Augusto et al. 2026, <i>Micron</i> 208:104119 · <a href="https://doi.org/10.1016/j.micron.2026.104119">doi:10.1016/j.micron.2026.104119</a> · CC BY-NC 4.0</span></figcaption>
       </figure>
     </article>
 
@@ -416,17 +419,12 @@ footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify
       <p class="lead">Teaching takes place mainly at master's level at UPVD, in English and French, with postgraduate training in Brazil. Teaching follows the research: parasitology, functional genomics and how scientists communicate.</p>
     </div>
     <div class="cards">
-      <article class="card feature"><p class="lvl">MOOC · France Université Numérique · launching September 2026</p><h3>Systems Biology of Parasites &amp; Disease Vectors</h3><p>28 lectures by 19 experts from the Americas, Africa and Europe, covering systems biology, parasitology, vector biology and One Health. The core of the Perpignan School of Parasitology.</p></article>
+      <article class="card feature"><p class="lvl">MOOC · France Université Numérique · launching November 2026</p><h3>Systems Biology of Parasites &amp; Disease Vectors</h3><p>28 lectures by 19 experts from the Americas, Africa and Europe, covering systems biology, parasitology, vector biology and One Health. The core of the Perpignan School of Parasitology.</p></article>
       <article class="card"><p class="lvl">Summer school · June 2026</p><h3>AquaACROSS</h3><p>Three weeks on aquatic ecosystems facing global change, co-designed with Claudia Pogoreutz and Lucia Di Iorio for the ACROSS cross-border university.</p></article>
       <article class="card"><p class="lvl">Fiocruz, Brazil · since 2023</p><h3>Parasite–intermediate host interactions</h3><p>Co-coordinator of this 40-hour course in the postgraduate specialization in Vector Malacology, IOC/Fiocruz.</p></article>
-      <article class="card"><p class="lvl">TULIP Graduate School</p><h3>Mini-review and Junior Lab</h3><p>Research-based modules where master's students produce a review article or an experimental project.</p></article>
+      <article class="card"><p class="lvl">UPVD · Master BDD, B2i, CEEC</p><h3>Master's courses</h3><ul class="clist"><li>Scientific English 1 and 2</li><li>Ecological communities: parasites as drivers of community structure</li><li>Tools for population management: parasites in host population dynamics</li></ul></article>
       <article class="card"><p class="lvl">From 2027</p><h3>Licence Sciences de la Vie, Darwin track</h3><p>Co-responsible for the new curriculum and for the animal diversity and evolution units.</p></article>
     </div>
-    <ul class="courses" aria-label="Courses at UPVD">
-      <li><span>Scientific English 1 and 2: writing, critical reading, abstracts and talks</span><span>M1 BDD/B2I · M2 BDD/B2I/CEEC</span></li>
-      <li><span>Ecological communities: parasites as drivers of community structure</span><span>M1 BDD/B2I</span></li>
-      <li><span>Tools for population management: parasites in host population dynamics</span><span>M2 BDD/B2I</span></li>
-    </ul>
   </div>
 </section>
 
